@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 330" width="100%" height="100%">
+  <defs>
+    <!-- Master 3D Metallic Gold Gradient -->
+    <linearGradient id="goldFaceMono3D" x1="15%" y1="0%" x2="85%" y2="100%">
+      <stop offset="0%" stop-color="#FFF9E5" />
+      <stop offset="18%" stop-color="#F5DC96" />
+      <stop offset="38%" stop-color="#ECC670" />
+      <stop offset="55%" stop-color="#DFB355" />
+      <stop offset="72%" stop-color="#C5963B" />
+      <stop offset="88%" stop-color="#A87522" />
+      <stop offset="100%" stop-color="#7B5011" />
+    </linearGradient>
+
+    <!-- 3D Bevel Chamfer Shadow -->
+    <linearGradient id="goldChamferMono3D" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8F631C" />
+      <stop offset="50%" stop-color="#64420C" />
+      <stop offset="100%" stop-color="#3B2504" />
+    </linearGradient>
+
+    <!-- 3D Specular Highlight Edge -->
+    <linearGradient id="goldHighlightMono3D" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E5BF6F" />
+      <stop offset="50%" stop-color="#FFF8E7" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+
+    <!-- Leaf 3D Facets -->
+    <linearGradient id="leafLightMono3D" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="35%" stop-color="#FFF1CA" />
+      <stop offset="70%" stop-color="#E7C06D" />
+      <stop offset="100%" stop-color="#C6983A" />
+    </linearGradient>
+
+    <linearGradient id="leafShadeMono3D" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DDAF4D" />
+      <stop offset="50%" stop-color="#A57321" />
+      <stop offset="100%" stop-color="#67440E" />
+    </linearGradient>
+
+    <!-- 3D Specular Point-Light Filter -->
+    <filter id="trueMetallicMono3D" x="-25%" y="-25%" width="150%" height="150%">
+      <feOffset in="SourceAlpha" dx="0" dy="5" result="groundOffset" />
+      <feGaussianBlur in="groundOffset" stdDeviation="4" result="groundBlur" />
+      <feColorMatrix in="groundBlur" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0.45 0" result="groundShadow" />
+
+      <feOffset in="SourceAlpha" dx="1.8" dy="2.4" result="bevelOffset" />
+      <feGaussianBlur in="bevelOffset" stdDeviation="0.6" result="bevelBlur" />
+      <feColorMatrix in="bevelBlur" type="matrix"
+        values="0 0 0 0 0.38
+                0 0 0 0 0.24
+                0 0 0 0 0.06
+                0 0 0 1 0" result="bevelShadow" />
+
+      <feOffset in="SourceAlpha" dx="-0.8" dy="-0.8" result="lightOffset" />
+      <feGaussianBlur in="lightOffset" stdDeviation="0.5" result="lightBlur" />
+      <feColorMatrix in="lightBlur" type="matrix"
+        values="0 0 0 0 1
+                0 0 0 0 0.98
+                0 0 0 0 0.88
+                0 0 0 0.9 0" result="rimHighlight" />
+
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="bumpMap" />
+      <feSpecularLighting in="bumpMap" surfaceScale="4.5" specularConstant="1.5" specularExponent="22" lighting-color="#FFFBF0" result="specularLight">
+        <fePointLight x="180" y="60" z="240" />
+      </feSpecularLighting>
+      <feComposite in="specularLight" in2="SourceAlpha" operator="in" result="specularGlint" />
+
+      <feMerge>
+        <feMergeNode in="groundShadow" />
+        <feMergeNode in="bevelShadow" />
+        <feMergeNode in="SourceGraphic" />
+        <feMergeNode in="rimHighlight" />
+        <feMergeNode in="specularGlint" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g filter="url(#trueMetallicMono3D)" transform="translate(-155, -35)">
+    <!-- SERIF LETTER 'H' (Backing Letter with 3D Extrusion) -->
+    <path d="
+      M 175 60
+      L 235 60
+      L 235 67
+      C 223 67, 220 72, 220 84
+      L 220 226
+      C 220 238, 223 243, 235 243
+      L 235 250
+      L 175 250
+      L 175 243
+      C 187 243, 190 238, 190 226
+      L 190 84
+      C 190 72, 187 67, 175 67
+      Z
+    " fill="url(#goldFaceMono3D)" stroke="url(#goldChamferMono3D)" stroke-width="1.8" />
+
+    <path d="
+      M 205 151
+      L 310 151
+      L 310 160
+      L 205 160
+      Z
+    " fill="url(#goldFaceMono3D)" stroke="url(#goldChamferMono3D)" stroke-width="1.6" />
+
+    <path d="
+      M 280 60
+      L 340 60
+      L 340 67
+      C 328 67, 325 72, 325 84
+      L 325 226
+      C 325 238, 328 243, 340 243
+      L 340 250
+      L 280 250
+      L 280 243
+      C 292 243, 295 238, 295 226
+      L 295 84
+      C 295 72, 292 67, 280 67
+      Z
+    " fill="url(#goldFaceMono3D)" stroke="url(#goldChamferMono3D)" stroke-width="1.8" />
+
+    <line x1="205" y1="84" x2="205" y2="226" stroke="url(#goldHighlightMono3D)" stroke-width="0.8" opacity="0.85" />
+    <line x1="310" y1="84" x2="310" y2="226" stroke="url(#goldHighlightMono3D)" stroke-width="0.8" opacity="0.85" />
+
+    <!-- 3D SCULPTED BOTANICAL LEAF SPRIG -->
+    <path d="M 378 205 C 388 170, 400 125, 436 90" fill="none" stroke="url(#goldChamferMono3D)" stroke-width="4.2" stroke-linecap="round" />
+    <path d="M 378 205 C 388 170, 400 125, 436 90" fill="none" stroke="url(#goldFaceMono3D)" stroke-width="3" stroke-linecap="round" />
+    <path d="M 377 205 C 387 170, 399 125, 435 90" fill="none" stroke="url(#goldHighlightMono3D)" stroke-width="1" stroke-linecap="round" opacity="0.9" />
+
+    <!-- Leaves with 3D Center Spine -->
+    <g>
+      <path d="M 436 90 C 448 76, 453 62, 454 48 C 450 66, 442 78, 436 90 Z" fill="url(#leafShadeMono3D)" stroke="#503509" stroke-width="0.8" />
+      <path d="M 436 90 C 442 75, 452 62, 454 48 C 438 58, 430 72, 436 90 Z" fill="url(#leafLightMono3D)" stroke="#7A5313" stroke-width="0.8" />
+      <path d="M 436 90 Q 445 68 454 48" fill="none" stroke="url(#goldHighlightMono3D)" stroke-width="1.2" stroke-linecap="round" />
+    </g>
+
+    <g>
+      <path d="M 426 108 C 446 102, 456 94, 464 82 C 452 94, 438 102, 426 108 Z" fill="url(#leafShadeMono3D)" stroke="#503509" stroke-width="0.8" />
+      <path d="M 426 108 C 444 102, 458 98, 464 82 C 446 86, 434 94, 426 108 Z" fill="url(#leafLightMono3D)" stroke="#7A5313" stroke-width="0.8" />
+      <path d="M 426 108 Q 446 95 464 82" fill="none" stroke="url(#goldHighlightMono3D)" stroke-width="1.2" stroke-linecap="round" />
+    </g>
+
+    <g>
+      <path d="M 412 128 C 398 114, 392 104, 386 92 C 392 108, 402 118, 412 128 Z" fill="url(#leafShadeMono3D)" stroke="#503509" stroke-width="0.8" />
+      <path d="M 412 128 C 398 114, 390 106, 386 92 C 400 98, 408 112, 412 128 Z" fill="url(#leafLightMono3D)" stroke="#7A5313" stroke-width="0.8" />
+      <path d="M 412 128 Q 398 110 386 92" fill="none" stroke="url(#goldHighlightMono3D)" stroke-width="1.2" stroke-linecap="round" />
+    </g>
+
+    <g>
+      <path d="M 404 152 C 426 144, 438 136, 446 126 C 434 138, 420 146, 404 152 Z" fill="url(#leafShadeMono3D)" stroke="#503509" stroke-width="0.8" />
+      <path d="M 404 152 C 424 146, 438 140, 446 126 C 428 130, 416 138, 404 152 Z" fill="url(#leafLightMono3D)" stroke="#7A5313" stroke-width="0.8" />
+      <path d="M 404 152 Q 426 139 446 126" fill="none" stroke="url(#goldHighlightMono3D)" stroke-width="1.2" stroke-linecap="round" />
+    </g>
+
+    <g>
+      <path d="M 390 178 C 376 166, 370 156, 368 146 C 374 160, 382 170, 390 178 Z" fill="url(#leafShadeMono3D)" stroke="#503509" stroke-width="0.8" />
+      <path d="M 390 178 C 376 166, 370 158, 368 146 C 380 152, 386 164, 390 178 Z" fill="url(#leafLightMono3D)" stroke="#7A5313" stroke-width="0.8" />
+      <path d="M 390 178 Q 378 162 368 146" fill="none" stroke="url(#goldHighlightMono3D)" stroke-width="1.2" stroke-linecap="round" />
+    </g>
+
+    <!-- 3D EMBOSSED LETTER 'W' -->
+    <path d="
+      M 242 165
+      L 262 165
+      L 326 318
+      L 310 318
+      Z
+    " fill="url(#goldFaceMono3D)" stroke="url(#goldChamferMono3D)" stroke-width="1.8" />
+
+    <path d="
+      M 310 318
+      L 326 318
+      L 375 190
+      L 362 190
+      Z
+    " fill="url(#goldFaceMono3D)" stroke="url(#goldChamferMono3D)" stroke-width="1.8" />
+
+    <path d="
+      M 362 190
+      L 375 190
+      L 408 318
+      L 392 318
+      Z
+    " fill="url(#goldFaceMono3D)" stroke="url(#goldChamferMono3D)" stroke-width="1.8" />
+
+    <path d="
+      M 392 318
+      L 408 318
+      L 462 175
+      L 480 175
+      L 480 168
+      L 446 168
+      L 446 175
+      L 454 175
+      Z
+    " fill="url(#goldFaceMono3D)" stroke="url(#goldChamferMono3D)" stroke-width="1.8" />
+
+    <path d="
+      M 235 168
+      L 268 168
+      L 268 163
+      L 235 163
+      Z
+    " fill="url(#goldFaceMono3D)" stroke="url(#goldChamferMono3D)" stroke-width="1.8" />
+
+    <line x1="252" y1="168" x2="318" y2="318" stroke="url(#goldHighlightMono3D)" stroke-width="0.9" opacity="0.9" />
+    <line x1="318" y1="318" x2="368" y2="190" stroke="url(#goldHighlightMono3D)" stroke-width="0.9" opacity="0.9" />
+    <line x1="368" y1="190" x2="400" y2="318" stroke="url(#goldHighlightMono3D)" stroke-width="0.9" opacity="0.9" />
+    <line x1="400" y1="318" x2="456" y2="175" stroke="url(#goldHighlightMono3D)" stroke-width="0.9" opacity="0.9" />
+  </g>
+</svg>

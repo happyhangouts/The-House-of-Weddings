@@ -1,0 +1,6 @@
+{
+  "name": "The House of Weddings",
+  "description": "The House of Weddings by Mubaarqaan helps you find curated wedding venues, visualize your wedding, manage RSVPs and coordinate your celebration — so you can be a guest at your own wedding.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

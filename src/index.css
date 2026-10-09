@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-sage: #758361;
+    --brand-sage-dark: #586546;
+    --brand-sage-light: #94A280;
+    --brand-sage-surface: #EEF1EA;
+    --brand-emerald-deep: #032B24;
+    --brand-emerald-dark: #02231D;
+    --brand-emerald-secondary: #073B32;
+    --brand-theme-color: #758361;
+    --brand-champagne-gold: #758361;
+    --brand-champagne-light: #EEF1EA;
+    --brand-champagne-dark: #586546;
+    --brand-warm-ivory: #F8F5EE;
+    --brand-ivory-surface: #F1ECE0;
+    --brand-dark-text: #032B24;
+    --brand-ivory-border: rgba(117, 131, 97, 0.25);
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--brand-dark-text);
+    background-color: var(--brand-warm-ivory);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, .font-serif-luxury {
+    font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+  }
+}
+
+.font-serif {
+  font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-serif-body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-sans {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Custom subtle sage & emerald scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F8F5EE;
+}
+::-webkit-scrollbar-thumb {
+  background: #758361;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #032B24;
+}
