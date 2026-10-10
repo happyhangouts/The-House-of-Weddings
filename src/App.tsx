@@ -12,15 +12,15 @@ import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
 import { MobileStickyBar } from './components/MobileStickyBar';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
-import { BrochureModal } from './components/BrochureModal';
-import { LogoUploadModal } from './components/LogoUploadModal';
+import { BrochureModal, BrochureType } from './components/BrochureModal';
 
 export default function App() {
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
+  const [brochureType, setBrochureType] = useState<BrochureType>('maison');
   const [brochurePage, setBrochurePage] = useState(1);
-  const [isLogoUploadOpen, setIsLogoUploadOpen] = useState(false);
 
-  const openBrochure = (page: number = 1) => {
+  const openBrochure = (type: BrochureType = 'maison', page: number = 1) => {
+    setBrochureType(type);
     setBrochurePage(page);
     setIsBrochureOpen(true);
   };
@@ -38,16 +38,18 @@ export default function App() {
         {/* Minimal Sticky Header */}
         <Header
           onPlanClick={scrollToForm}
-          onOpenBrochure={() => openBrochure(1)}
-          onOpenLogoUpload={() => setIsLogoUploadOpen(true)}
+          onOpenBrochure={(type = 'maison') => openBrochure(type, 1)}
         />
 
         <main className="flex-grow">
           {/* Section 1: Hero (Minimalist, Spacious & Opulent) */}
-          <Hero onStartClick={scrollToForm} onOpenBrochure={() => openBrochure(1)} />
+          <Hero
+            onStartClick={scrollToForm}
+            onOpenBrochure={(type = 'maison') => openBrochure(type, 1)}
+          />
 
-          {/* Section 2: What We Do (Four Simple Steps) */}
-          <WhatWeDo onOpenBrochure={() => openBrochure(1)} />
+          {/* Section 2: What We Do (Four Simple Steps & What We Do Differently Maison Folio) */}
+          <WhatWeDo onOpenBrochure={(type = 'maison') => openBrochure(type, 1)} />
 
           {/* Section 3: Wedding Management Packages (Bronze, Gold, Platinum) & Standards */}
           <Benefits />
@@ -68,27 +70,25 @@ export default function App() {
           <FinalCTA onPlanClick={scrollToForm} />
         </main>
 
-        {/* Minimal Footer with Logo Customizer trigger */}
-        <Footer onOpenLogoUpload={() => setIsLogoUploadOpen(true)} />
+        {/* Minimal Footer */}
+        <Footer />
 
         {/* Floating Direct WhatsApp & Instagram Widget */}
         <FloatingWhatsApp />
 
         {/* Mobile Sticky CTA Bar */}
-        <MobileStickyBar onPlanClick={scrollToForm} onOpenBrochure={() => openBrochure(1)} />
+        <MobileStickyBar
+          onPlanClick={scrollToForm}
+          onOpenBrochure={(type = 'maison') => openBrochure(type, 1)}
+        />
 
-        {/* Full-Screen Digital Capability Brochure Reader Modal */}
+        {/* Full-Screen Digital Capability Brochure Reader Modal (Maison Folio & Event Management) */}
         <BrochureModal
           isOpen={isBrochureOpen}
+          initialBrochure={brochureType}
           initialPage={brochurePage}
           onClose={() => setIsBrochureOpen(false)}
           onPlanClick={scrollToForm}
-        />
-
-        {/* Brand Logo Upload & Customization Modal */}
-        <LogoUploadModal
-          isOpen={isLogoUploadOpen}
-          onClose={() => setIsLogoUploadOpen(false)}
         />
       </div>
     </LogoProvider>

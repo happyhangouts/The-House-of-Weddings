@@ -1,0 +1,9 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+# SPA redirection rule so all URLs route to index.html on Netlify
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

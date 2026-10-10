@@ -4,7 +4,7 @@ import heroBgImg from '../assets/images/hero_luxury_wedding_venue_1790246590642.
 
 interface HeroProps {
   onStartClick: () => void;
-  onOpenBrochure?: () => void;
+  onOpenBrochure?: (type?: 'maison' | 'management') => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({ onStartClick, onOpenBrochure }) => {
@@ -62,14 +62,14 @@ export const Hero: React.FC<HeroProps> = ({ onStartClick, onOpenBrochure }) => {
 
             {onOpenBrochure && (
               <button
-                onClick={onOpenBrochure}
+                onClick={() => onOpenBrochure('maison')}
                 type="button"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 text-xs font-sans font-medium tracking-[0.16em] uppercase text-[#F8F5EE] bg-[#02201A]/80 hover:bg-[#758361]/30 border border-[#758361]/60 hover:border-[#758361] transition-all cursor-pointer whitespace-nowrap shadow-xs"
               >
                 <svg className="w-3.5 h-3.5 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2.2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                <span>Brochure (PDF)</span>
+                <span>Maison Folio &amp; Brochures (PDF)</span>
               </button>
             )}
           </div>

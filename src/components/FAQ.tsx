@@ -80,11 +80,11 @@ export const FAQ: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-18">
           <div className="flex items-center justify-center gap-3 mb-3">
-            <span className="w-8 h-[1px] bg-[#DFBF7B]" />
+            <span className="w-8 h-[1px] bg-[#758361]" />
             <span className="text-[11px] font-sans tracking-[0.24em] uppercase text-[#032B24]/75 font-semibold">
               Frequently Asked Questions
             </span>
-            <span className="w-8 h-[1px] bg-[#DFBF7B]" />
+            <span className="w-8 h-[1px] bg-[#758361]" />
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#032B24] tracking-[0.08em] uppercase mb-4">
             Got Questions?
@@ -92,7 +92,7 @@ export const FAQ: React.FC = () => {
           <p className="font-sans text-base sm:text-lg text-[#032B24]/80 font-light">
             Simple, honest answers about how we help you find venues, design in 3D, and save money.
           </p>
-          <div className="w-16 h-[1px] bg-[#DFBF7B] mx-auto mt-6" />
+          <div className="w-16 h-[1px] bg-[#758361] mx-auto mt-6" />
         </div>
 
         {/* Accordion List */}
@@ -111,7 +111,7 @@ export const FAQ: React.FC = () => {
                   aria-expanded={isOpen}
                 >
                   <div>
-                    <span className="text-[10px] font-sans tracking-[0.2em] uppercase text-[#B89248] font-semibold block mb-1">
+                    <span className="text-[10px] font-sans tracking-[0.2em] uppercase text-[#758361] font-semibold block mb-1">
                       {faq.category}
                     </span>
                     <h3 className="font-serif text-lg sm:text-xl text-[#032B24] font-normal leading-snug">
@@ -128,7 +128,7 @@ export const FAQ: React.FC = () => {
                   <div className="px-6 pb-6 pt-1 text-sm sm:text-[15px] font-sans text-[#032B24]/80 leading-relaxed font-light border-t border-[#032B24]/5">
                     <p className="mb-3">{faq.answer}</p>
                     {faq.highlight && (
-                      <div className="p-3 bg-[#F1ECE0]/70 border-l-2 border-[#DFBF7B] text-xs text-[#032B24] font-medium tracking-wide">
+                      <div className="p-3 bg-[#F1ECE0]/70 border-l-2 border-[#758361] text-xs text-[#032B24] font-medium tracking-wide">
                         {faq.highlight}
                       </div>
                     )}

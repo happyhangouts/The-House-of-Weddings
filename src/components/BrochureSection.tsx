@@ -33,20 +33,20 @@ export const BrochureSection: React.FC<BrochureSectionProps> = ({
   };
 
   return (
-    <section id="brochure" className="relative py-20 sm:py-28 bg-[#032B24] text-[#F8F5EE] border-t border-[#DFBF7B]/30 overflow-hidden">
+    <section id="brochure" className="relative py-20 sm:py-28 bg-[#032B24] text-[#F8F5EE] border-t border-[#758361]/30 overflow-hidden">
       {/* Background Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#DFBF7B]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#758361]/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
           <div className="flex items-center justify-center gap-3 mb-3">
-            <span className="w-8 h-[1px] bg-[#DFBF7B]" />
-            <span className="text-[11px] font-sans tracking-[0.24em] uppercase text-[#DFBF7B] font-semibold">
+            <span className="w-8 h-[1px] bg-[#758361]" />
+            <span className="text-[11px] font-sans tracking-[0.24em] uppercase text-[#758361] font-semibold">
               OFFICIAL BROCHURE · EDITION 2026
             </span>
-            <span className="w-8 h-[1px] bg-[#DFBF7B]" />
+            <span className="w-8 h-[1px] bg-[#758361]" />
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#F8F5EE] tracking-[0.08em] uppercase mb-4">
             Event Management &amp; Hospitality Brochure
@@ -54,11 +54,11 @@ export const BrochureSection: React.FC<BrochureSectionProps> = ({
           <p className="font-sans text-base sm:text-lg text-[#F8F5EE]/80 font-light max-w-2xl mx-auto leading-relaxed">
             Download our 6-page brochure to see our on-ground team structure, guest hospitality services, and transparent packages starting from <strong>₹69,000+</strong>.
           </p>
-          <div className="w-16 h-[1px] bg-[#DFBF7B]/50 mx-auto mt-6" />
+          <div className="w-16 h-[1px] bg-[#758361]/50 mx-auto mt-6" />
         </div>
 
         {/* Main Feature Showcase Container */}
-        <div className="bg-[#02201A]/90 border border-[#DFBF7B]/30 p-6 sm:p-10 lg:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+        <div className="bg-[#02201A]/90 border border-[#758361]/30 p-6 sm:p-10 lg:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Left: Visual Brochure Stack Previews */}
@@ -66,23 +66,23 @@ export const BrochureSection: React.FC<BrochureSectionProps> = ({
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 
                 {/* Background Shadow Cards for 3D Stack Effect */}
-                <div className="absolute -top-3 -right-3 w-full h-full bg-[#DFBF7B]/15 border border-[#DFBF7B]/30 rounded-none pointer-events-none" />
-                <div className="absolute -top-1.5 -right-1.5 w-full h-full bg-[#032B24] border border-[#DFBF7B]/20 rounded-none pointer-events-none" />
+                <div className="absolute -top-3 -right-3 w-full h-full bg-[#758361]/15 border border-[#758361]/30 rounded-none pointer-events-none" />
+                <div className="absolute -top-1.5 -right-1.5 w-full h-full bg-[#032B24] border border-[#758361]/20 rounded-none pointer-events-none" />
 
                 {/* Main Front Brochure Cover Card */}
                 <div 
                   onClick={() => onOpenBrochure(1)}
-                  className="relative bg-[#FAF8F3] text-[#032B24] p-5 sm:p-6 border-2 border-[#DFBF7B] shadow-2xl cursor-pointer group transition-transform hover:-translate-y-1"
+                  className="relative bg-[#FAF8F3] text-[#032B24] p-5 sm:p-6 border-2 border-[#758361] shadow-2xl cursor-pointer group transition-transform hover:-translate-y-1"
                 >
                   {/* Top Bar of Card */}
-                  <div className="flex justify-between items-center text-[9px] font-sans tracking-[0.2em] uppercase text-[#B89248] pb-2 border-b border-[#DFBF7B]/30 mb-4">
+                  <div className="flex justify-between items-center text-[9px] font-sans tracking-[0.2em] uppercase text-[#B89248] pb-2 border-b border-[#758361]/30 mb-4">
                     <span>Capability Brochure · Edition 2026</span>
-                    <span className="bg-[#032B24] text-[#DFBF7B] px-1.5 py-0.5 font-bold">6 Pages PDF</span>
+                    <span className="bg-[#032B24] text-[#758361] px-1.5 py-0.5 font-bold">6 Pages PDF</span>
                   </div>
 
                   {/* Mini Emblem */}
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 border border-[#DFBF7B] overflow-hidden shadow-sm shrink-0">
+                    <div className="w-10 h-10 border border-[#758361] overflow-hidden shadow-sm shrink-0">
                       <img
                         src="/logo.jpg"
                         alt="The House of Weddings"
@@ -107,7 +107,7 @@ export const BrochureSection: React.FC<BrochureSectionProps> = ({
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-2.5">
-                      <span className="text-[10px] font-sans uppercase tracking-widest text-[#DFBF7B] font-semibold">
+                      <span className="text-[10px] font-sans uppercase tracking-widest text-[#758361] font-semibold">
                         Click to Flip Through Full Brochure &rarr;
                       </span>
                     </div>
@@ -119,9 +119,9 @@ export const BrochureSection: React.FC<BrochureSectionProps> = ({
                       <strong className="block text-[#032B24] text-[9px] uppercase tracking-wider">Bronze</strong>
                       <span className="text-[#B89248] font-bold">₹69,000+</span>
                     </div>
-                    <div className="p-1.5 bg-[#032B24] text-[#F8F5EE] border border-[#DFBF7B]">
-                      <strong className="block text-[#DFBF7B] text-[9px] uppercase tracking-wider">Gold ★</strong>
-                      <span className="text-[#DFBF7B] font-bold">₹1,49,000+</span>
+                    <div className="p-1.5 bg-[#032B24] text-[#F8F5EE] border border-[#758361]">
+                      <strong className="block text-[#758361] text-[9px] uppercase tracking-wider">Gold ★</strong>
+                      <span className="text-[#758361] font-bold">₹1,49,000+</span>
                     </div>
                     <div className="p-1.5 bg-[#F1ECE0] border border-[#032B24]/10">
                       <strong className="block text-[#032B24] text-[9px] uppercase tracking-wider">Platinum</strong>
@@ -135,7 +135,7 @@ export const BrochureSection: React.FC<BrochureSectionProps> = ({
             {/* Right: What's Inside & Download Actions */}
             <div className="lg:col-span-6 space-y-6">
               <div>
-                <span className="text-[10px] sm:text-[11px] font-sans tracking-[0.24em] uppercase text-[#DFBF7B] font-semibold block mb-2">
+                <span className="text-[10px] sm:text-[11px] font-sans tracking-[0.24em] uppercase text-[#758361] font-semibold block mb-2">
                   What You&apos;ll Find Inside:
                 </span>
                 <h3 className="font-serif text-2xl sm:text-3xl text-[#F8F5EE] tracking-wide mb-4">
@@ -150,10 +150,10 @@ export const BrochureSection: React.FC<BrochureSectionProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs font-sans">
                 <div 
                   onClick={() => onOpenBrochure(2)}
-                  className="p-3 bg-[#032B24] border border-[#DFBF7B]/30 hover:border-[#DFBF7B] transition-colors cursor-pointer group"
+                  className="p-3 bg-[#032B24] border border-[#758361]/30 hover:border-[#758361] transition-colors cursor-pointer group"
                 >
-                  <span className="text-[10px] text-[#DFBF7B] block font-mono">PAGE 02</span>
-                  <strong className="text-[#F8F5EE] block font-medium group-hover:text-[#DFBF7B] transition-colors">
+                  <span className="text-[10px] text-[#758361] block font-mono">PAGE 02</span>
+                  <strong className="text-[#F8F5EE] block font-medium group-hover:text-[#758361] transition-colors">
                     Guest Care &amp; Personal Shadows
                   </strong>
                   <span className="text-[11px] text-[#F8F5EE]/70 font-light">Airport greetings, room allocations, VIP care</span>
@@ -161,10 +161,10 @@ export const BrochureSection: React.FC<BrochureSectionProps> = ({
 
                 <div 
                   onClick={() => onOpenBrochure(3)}
-                  className="p-3 bg-[#032B24] border border-[#DFBF7B]/30 hover:border-[#DFBF7B] transition-colors cursor-pointer group"
+                  className="p-3 bg-[#032B24] border border-[#758361]/30 hover:border-[#758361] transition-colors cursor-pointer group"
                 >
-                  <span className="text-[10px] text-[#DFBF7B] block font-mono">PAGE 03</span>
-                  <strong className="text-[#F8F5EE] block font-medium group-hover:text-[#DFBF7B] transition-colors">
+                  <span className="text-[10px] text-[#758361] block font-mono">PAGE 03</span>
+                  <strong className="text-[#F8F5EE] block font-medium group-hover:text-[#758361] transition-colors">
                     24/7 Operations &amp; Help Desk
                   </strong>
                   <span className="text-[11px] text-[#F8F5EE]/70 font-light">Control room, walkie-talkie sync, night support</span>
@@ -172,10 +172,10 @@ export const BrochureSection: React.FC<BrochureSectionProps> = ({
 
                 <div 
                   onClick={() => onOpenBrochure(4)}
-                  className="p-3 bg-[#032B24] border border-[#DFBF7B]/30 hover:border-[#DFBF7B] transition-colors cursor-pointer group"
+                  className="p-3 bg-[#032B24] border border-[#758361]/30 hover:border-[#758361] transition-colors cursor-pointer group"
                 >
-                  <span className="text-[10px] text-[#DFBF7B] block font-mono">PAGE 04</span>
-                  <strong className="text-[#F8F5EE] block font-medium group-hover:text-[#DFBF7B] transition-colors">
+                  <span className="text-[10px] text-[#758361] block font-mono">PAGE 04</span>
+                  <strong className="text-[#F8F5EE] block font-medium group-hover:text-[#758361] transition-colors">
                     Destination Standards
                   </strong>
                   <span className="text-[11px] text-[#F8F5EE]/70 font-light">Continuous shuttles, flight tracking, peace of mind</span>
@@ -183,23 +183,23 @@ export const BrochureSection: React.FC<BrochureSectionProps> = ({
 
                 <div 
                   onClick={() => onOpenBrochure(5)}
-                  className="p-3 bg-[#032B24] border border-[#DFBF7B]/30 hover:border-[#DFBF7B] transition-colors cursor-pointer group"
+                  className="p-3 bg-[#032B24] border border-[#758361]/30 hover:border-[#758361] transition-colors cursor-pointer group"
                 >
-                  <span className="text-[10px] text-[#DFBF7B] block font-mono">PAGE 05</span>
-                  <strong className="text-[#F8F5EE] block font-medium group-hover:text-[#DFBF7B] transition-colors">
+                  <span className="text-[10px] text-[#758361] block font-mono">PAGE 05</span>
+                  <strong className="text-[#F8F5EE] block font-medium group-hover:text-[#758361] transition-colors">
                     Management Packages
                   </strong>
-                  <span className="text-[11px] text-[#DFBF7B]/70 font-light">₹69,000+ to ₹2,19,000+ transparent tiers</span>
+                  <span className="text-[11px] text-[#758361]/70 font-light">₹69,000+ to ₹2,19,000+ transparent tiers</span>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-4 border-t border-[#DFBF7B]/20 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <div className="pt-4 border-t border-[#758361]/20 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                 {/* Instant PDF Download Button */}
                 <button
                   onClick={handleDownload}
                   disabled={isDownloading}
-                  className="flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-gradient-to-r from-[#DFBF7B] via-[#EADBBA] to-[#DFBF7B] text-[#032B24] text-xs font-sans font-semibold uppercase tracking-[0.18em] shadow-[0_4px_20px_rgba(223,191,123,0.35)] hover:shadow-[0_6px_28px_rgba(223,191,123,0.5)] transition-all cursor-pointer disabled:opacity-50"
+                  className="flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-gradient-to-r from-[#758361] via-[#859470] to-[#758361] text-[#032B24] text-xs font-sans font-semibold uppercase tracking-[0.18em] shadow-[0_4px_20px_rgba(223,191,123,0.35)] hover:shadow-[0_6px_28px_rgba(223,191,123,0.5)] transition-all cursor-pointer disabled:opacity-50"
                 >
                   <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2.2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -210,7 +210,7 @@ export const BrochureSection: React.FC<BrochureSectionProps> = ({
                 {/* Preview in Reader */}
                 <button
                   onClick={() => onOpenBrochure(1)}
-                  className="px-5 py-3.5 bg-[#02201A] hover:bg-[#073830] text-[#DFBF7B] border border-[#DFBF7B]/50 text-xs font-sans font-medium uppercase tracking-[0.16em] transition-colors cursor-pointer text-center"
+                  className="px-5 py-3.5 bg-[#02201A] hover:bg-[#073830] text-[#758361] border border-[#758361]/50 text-xs font-sans font-medium uppercase tracking-[0.16em] transition-colors cursor-pointer text-center"
                 >
                   Preview Online
                 </button>
@@ -218,7 +218,7 @@ export const BrochureSection: React.FC<BrochureSectionProps> = ({
                 {/* WhatsApp Option */}
                 <button
                   onClick={handleWhatsApp}
-                  className="px-4 py-3.5 bg-[#02201A] hover:bg-[#073830] text-[#DFBF7B] border border-[#DFBF7B]/50 text-xs font-sans uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-1.5"
+                  className="px-4 py-3.5 bg-[#02201A] hover:bg-[#073830] text-[#758361] border border-[#758361]/50 text-xs font-sans uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-1.5"
                   title="Receive Brochure on WhatsApp"
                 >
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">

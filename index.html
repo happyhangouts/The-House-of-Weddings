@@ -97,7 +97,26 @@
     }
     </script>
   </head>
-  <body class="bg-[#F8F5EE] text-[#032B24] antialiased selection:bg-[#DFBF7B]/30 selection:text-[#032B24]">
+  <body class="bg-[#F8F5EE] text-[#032B24] antialiased selection:bg-[#758361]/30 selection:text-[#032B24]">
+    <!-- Netlify Forms Build-Time Crawl Detection for React SPA -->
+    <form name="wedding-enquiry" netlify netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="wedding-enquiry" />
+      <input type="text" name="bot-field" />
+      <input type="text" name="fullName" />
+      <input type="tel" name="whatsappNumber" />
+      <input type="email" name="email" />
+      <input type="text" name="weddingDateType" />
+      <input type="text" name="weddingDateValue" />
+      <input type="text" name="destinationCity" />
+      <input type="number" name="guestCount" />
+      <input type="number" name="roomsRequired" />
+      <input type="number" name="functionCount" />
+      <input type="text" name="approximateBudget" />
+      <input type="text" name="servicesNeeded" />
+      <input type="text" name="complimentaryRideRequested" />
+      <textarea name="additionalNotes"></textarea>
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

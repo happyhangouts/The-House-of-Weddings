@@ -4,14 +4,12 @@ import { CONTACT_INFO } from '../config/contact';
 
 interface HeaderProps {
   onPlanClick: () => void;
-  onOpenBrochure?: () => void;
-  onOpenLogoUpload?: () => void;
+  onOpenBrochure?: (type?: 'maison' | 'management') => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   onPlanClick,
   onOpenBrochure,
-  onOpenLogoUpload,
 }) => {
   const [scrolled, setScrolled] = useState(false);
 
@@ -92,22 +90,8 @@ export const Header: React.FC<HeaderProps> = ({
           </a>
         </nav>
 
-        {/* Right: Direct WhatsApp & Call to Action & Upload Logo */}
+        {/* Right: Direct WhatsApp & Call to Action */}
         <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
-          {onOpenLogoUpload && (
-            <button
-              onClick={onOpenLogoUpload}
-              type="button"
-              title="Upload custom logo file"
-              className="p-1.5 sm:px-2.5 sm:py-2 text-[10px] sm:text-[11px] font-sans uppercase tracking-wider text-[#758361] hover:text-white hover:bg-[#758361] transition-colors border border-[#758361]/50 hover:border-[#758361] flex items-center gap-1 cursor-pointer shrink-0"
-            >
-              <svg className="w-3.5 h-3.5 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-              </svg>
-              <span className="hidden sm:inline">Upload Logo</span>
-            </button>
-          )}
-
           <a
             href={CONTACT_INFO.whatsapp.url}
             target="_blank"

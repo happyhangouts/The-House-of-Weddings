@@ -10,35 +10,30 @@ export default defineConfig(() => {
       react(),
       tailwindcss(),
       {
-        name: 'logo-upload-middleware',
+        name: 'netlify-form-dev-mock',
         configureServer(server) {
-          server.middlewares.use('/api/upload-logo', (req, res) => {
-            if (req.method === 'POST') {
+          server.middlewares.use((req, res, next) => {
+            if (
+              req.method === 'POST' &&
+              (req.url === '/' || req.url?.startsWith('/?') || req.url === '/index.html')
+            ) {
               let body = '';
               req.on('data', (chunk) => {
                 body += chunk;
               });
               req.on('end', () => {
-                try {
-                  const data = JSON.parse(body);
-                  if (data.image && data.image.includes('base64,')) {
-                    const base64Data = data.image.split('base64,')[1];
-                    const buffer = Buffer.from(base64Data, 'base64');
-                    fs.writeFileSync(path.resolve(__dirname, 'public/thow_logo_trimmed.png'), buffer);
-                    fs.writeFileSync(path.resolve(__dirname, 'public/logo.png'), buffer);
-                    fs.writeFileSync(path.resolve(__dirname, 'public/thow_logo_transparent.png'), buffer);
-                  }
-                  res.setHeader('Content-Type', 'application/json');
-                  res.end(JSON.stringify({ success: true }));
-                } catch {
-                  res.statusCode = 500;
-                  res.end(JSON.stringify({ error: 'Failed to save logo' }));
+                // If it's a Netlify form submission with form-name
+                if (body.includes('form-name=')) {
+                  res.statusCode = 200;
+                  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+                  res.end('<!doctype html><html><body><h1>Form Submission Received (Local Dev)</h1></body></html>');
+                  return;
                 }
+                next();
               });
-            } else {
-              res.statusCode = 404;
-              res.end();
+              return;
             }
+            next();
           });
         },
       },

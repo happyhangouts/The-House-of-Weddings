@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { WeddingEnquiryData } from '../types';
 
-const WEBHOOK_ENDPOINT = (typeof window !== 'undefined' && (window as unknown as { WEDDING_FORM_WEBHOOK_URL?: string }).WEDDING_FORM_WEBHOOK_URL) || '';
-
 const SERVICE_OPTIONS = [
   { id: 'venue', label: 'Venue Finding' },
   { id: 'visualization', label: '3D Venue Setup Design' },
@@ -12,12 +10,18 @@ const SERVICE_OPTIONS = [
 ];
 
 const BUDGET_RANGES = [
-  '₹50 Lakhs – ₹1 Crore',
-  '₹1 Crore – ₹2.5 Crores',
-  '₹2.5 Crores – ₹5 Crores',
-  '₹5 Crores – ₹10 Crores',
-  '₹10 Crores+ / Luxury Destination',
+  '30 - 50 Lakhs',
+  '50 - 70 Lakhs',
+  '70 Lakh - 1 Cr',
+  '1 CR +',
 ];
+
+// Netlify form data URL encoder helper
+const encodeNetlifyData = (data: Record<string, string>) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key] ?? ''))
+    .join('&');
+};
 
 export const EnquiryForm: React.FC = () => {
   const [formData, setFormData] = useState<WeddingEnquiryData>({
@@ -36,9 +40,11 @@ export const EnquiryForm: React.FC = () => {
     additionalNotes: '',
   });
 
+  const [botField, setBotField] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [submittedSummary, setSubmittedSummary] = useState<WeddingEnquiryData | null>(null);
 
   const validate = (): boolean => {
@@ -89,30 +95,70 @@ export const EnquiryForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Prevent duplicate submissions
+    if (isSubmitting) return;
+
     if (!validate()) {
       return;
     }
 
+    // Silent honeypot check for bots
+    if (botField) {
+      setIsSubmitted(true);
+      return;
+    }
+
     setIsSubmitting(true);
+    setSubmitError(null);
 
     try {
-      if (WEBHOOK_ENDPOINT) {
-        await fetch(WEBHOOK_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            ...formData,
-            submittedAt: new Date().toISOString(),
-            source: 'thehouseofweddings_website',
-          }),
-        });
+      // Build standard Netlify URL-encoded form payload
+      const payload: Record<string, string> = {
+        'form-name': 'wedding-enquiry',
+        'bot-field': botField,
+        fullName: formData.fullName.trim(),
+        whatsappNumber: formData.whatsappNumber.trim(),
+        email: formData.email.trim(),
+        weddingDateType: formData.weddingDateType,
+        weddingDateValue:
+          formData.weddingDateValue ||
+          (formData.weddingDateType === 'not_finalized' ? 'Not Finalized Yet' : ''),
+        destinationCity: formData.destinationCity.trim(),
+        guestCount: formData.guestCount !== '' ? String(formData.guestCount) : '',
+        roomsRequired: formData.roomsRequired !== '' ? String(formData.roomsRequired) : '',
+        functionCount: formData.functionCount !== '' ? String(formData.functionCount) : '',
+        approximateBudget: formData.approximateBudget || 'Not specified',
+        servicesNeeded:
+          formData.servicesNeeded.length > 0
+            ? formData.servicesNeeded.join(', ')
+            : 'None selected',
+        complimentaryRideRequested: formData.complimentaryRideRequested
+          ? 'Yes (Chauffeured luxury car requested)'
+          : 'No',
+        additionalNotes: formData.additionalNotes.trim(),
+      };
+
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: encodeNetlifyData(payload),
+      });
+
+      if (response.ok) {
+        setSubmittedSummary({ ...formData });
+        setIsSubmitted(true);
+        setSubmitError(null);
+      } else {
+        throw new Error(`Netlify form returned status ${response.status}`);
       }
-      setSubmittedSummary({ ...formData });
-      setIsSubmitted(true);
     } catch (err) {
-      console.error('Submission error:', err);
-      setSubmittedSummary({ ...formData });
-      setIsSubmitted(true);
+      console.error('Netlify form submission error:', err);
+      setSubmitError(
+        'We encountered an issue submitting your enquiry automatically. Please try submitting again, or connect with our planners directly on WhatsApp below.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -120,6 +166,7 @@ export const EnquiryForm: React.FC = () => {
 
   const handleReset = () => {
     setIsSubmitted(false);
+    setSubmitError(null);
     setFormData({
       fullName: '',
       whatsappNumber: '',
@@ -174,7 +221,7 @@ export const EnquiryForm: React.FC = () => {
             </h3>
 
             <p className="font-sans text-base sm:text-lg text-[#032B24]/85 max-w-lg mx-auto leading-relaxed mb-8 font-light">
-              Our senior wedding planner will review your dates, location, and guest count, and connect with you on WhatsApp shortly.
+              Your wedding consultation request has been safely received. Our senior wedding planner will review your dates, location, and guest count, and connect with you on WhatsApp shortly.
             </p>
 
             {submittedSummary && (
@@ -184,16 +231,28 @@ export const EnquiryForm: React.FC = () => {
                 </div>
                 <div><span className="text-[#032B24]/60">Name:</span> {submittedSummary.fullName}</div>
                 <div><span className="text-[#032B24]/60">WhatsApp:</span> {submittedSummary.whatsappNumber}</div>
+                <div><span className="text-[#032B24]/60">Email:</span> {submittedSummary.email}</div>
                 <div><span className="text-[#032B24]/60">Destination:</span> {submittedSummary.destinationCity}</div>
-                {submittedSummary.guestCount && <div><span className="text-[#032B24]/60">Guests:</span> ~{submittedSummary.guestCount}</div>}
+                {submittedSummary.approximateBudget && (
+                  <div><span className="text-[#032B24]/60">Approx. Budget:</span> {submittedSummary.approximateBudget}</div>
+                )}
+                {submittedSummary.guestCount && (
+                  <div><span className="text-[#032B24]/60">Guests:</span> ~{submittedSummary.guestCount}</div>
+                )}
+                {submittedSummary.roomsRequired && (
+                  <div><span className="text-[#032B24]/60">Rooms:</span> {submittedSummary.roomsRequired}</div>
+                )}
+                {submittedSummary.functionCount && (
+                  <div><span className="text-[#032B24]/60">Functions:</span> {submittedSummary.functionCount}</div>
+                )}
                 <div>
                   <span className="text-[#032B24]/60">Services:</span>{' '}
                   {submittedSummary.servicesNeeded.join(', ')}
                 </div>
                 {submittedSummary.complimentaryRideRequested && (
                   <div className="text-[#032B24] font-medium pt-2 border-t border-[#032B24]/10 flex items-center gap-1.5">
-                    <span className="text-[#B89248]">✓</span>
-                    <span>Free Luxury Car for Venue Visits: Requested (Our team will call to confirm pickup)</span>
+                    <span className="text-[#758361]">✓</span>
+                    <span>Free Luxury Car for Venue Visits: Requested</span>
                   </div>
                 )}
               </div>
@@ -226,26 +285,58 @@ export const EnquiryForm: React.FC = () => {
             <button
               onClick={handleReset}
               type="button"
-              className="text-xs tracking-[0.18em] uppercase text-[#032B24] hover:text-[#B89248] underline underline-offset-4 transition-colors font-medium cursor-pointer"
+              className="text-xs tracking-[0.18em] uppercase text-[#032B24] hover:text-[#758361] underline underline-offset-4 transition-colors font-medium cursor-pointer"
             >
               Submit Another Enquiry
             </button>
           </div>
         ) : (
           <form
+            name="wedding-enquiry"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
             noValidate
             className="bg-[#FCFAF6] border border-[#032B24]/15 p-6 sm:p-10 md:p-12 shadow-md relative"
           >
+            {/* Netlify Form Identifier & Bot-Field */}
+            <input type="hidden" name="form-name" value="wedding-enquiry" />
+            <div className="hidden" aria-hidden="true">
+              <label>
+                Don&apos;t fill this out if you are human:
+                <input
+                  name="bot-field"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={botField}
+                  onChange={(e) => setBotField(e.target.value)}
+                />
+              </label>
+            </div>
+
+            {/* Hidden Serialized Inputs for Array & Toggle States */}
+            <input type="hidden" name="weddingDateType" value={formData.weddingDateType} />
+            <input type="hidden" name="approximateBudget" value={formData.approximateBudget} />
+            <input
+              type="hidden"
+              name="servicesNeeded"
+              value={formData.servicesNeeded.join(', ')}
+            />
+
             {/* Grid for Primary Contact Info */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-8">
               {/* 1. Full Name */}
               <div>
-                <label htmlFor="fullName" className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2">
-                  1. Full Name <span className="text-[#B89248]">*</span>
+                <label
+                  htmlFor="fullName"
+                  className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2"
+                >
+                  1. Full Name <span className="text-[#758361]">*</span>
                 </label>
                 <input
                   id="fullName"
+                  name="fullName"
                   type="text"
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
@@ -254,16 +345,22 @@ export const EnquiryForm: React.FC = () => {
                     errors.fullName ? 'border-red-600 ring-1 ring-red-600' : 'border-[#032B24]/20 focus:border-[#032B24]'
                   } text-sm text-[#032B24] placeholder-[#032B24]/40 outline-none transition-colors`}
                 />
-                {errors.fullName && <p className="mt-1.5 text-xs text-red-600 font-sans">{errors.fullName}</p>}
+                {errors.fullName && (
+                  <p className="mt-1.5 text-xs text-red-600 font-sans">{errors.fullName}</p>
+                )}
               </div>
 
               {/* 2. WhatsApp Number */}
               <div>
-                <label htmlFor="whatsappNumber" className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2">
-                  2. WhatsApp Number <span className="text-[#B89248]">*</span>
+                <label
+                  htmlFor="whatsappNumber"
+                  className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2"
+                >
+                  2. WhatsApp Number <span className="text-[#758361]">*</span>
                 </label>
                 <input
                   id="whatsappNumber"
+                  name="whatsappNumber"
                   type="tel"
                   value={formData.whatsappNumber}
                   onChange={(e) => setFormData({ ...formData, whatsappNumber: e.target.value })}
@@ -272,16 +369,22 @@ export const EnquiryForm: React.FC = () => {
                     errors.whatsappNumber ? 'border-red-600 ring-1 ring-red-600' : 'border-[#032B24]/20 focus:border-[#032B24]'
                   } text-sm text-[#032B24] placeholder-[#032B24]/40 outline-none transition-colors`}
                 />
-                {errors.whatsappNumber && <p className="mt-1.5 text-xs text-red-600 font-sans">{errors.whatsappNumber}</p>}
+                {errors.whatsappNumber && (
+                  <p className="mt-1.5 text-xs text-red-600 font-sans">{errors.whatsappNumber}</p>
+                )}
               </div>
 
               {/* 3. Email */}
               <div>
-                <label htmlFor="email" className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2">
-                  3. Email Address <span className="text-[#B89248]">*</span>
+                <label
+                  htmlFor="email"
+                  className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2"
+                >
+                  3. Email Address <span className="text-[#758361]">*</span>
                 </label>
                 <input
                   id="email"
+                  name="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -290,7 +393,9 @@ export const EnquiryForm: React.FC = () => {
                     errors.email ? 'border-red-600 ring-1 ring-red-600' : 'border-[#032B24]/20 focus:border-[#032B24]'
                   } text-sm text-[#032B24] placeholder-[#032B24]/40 outline-none transition-colors`}
                 />
-                {errors.email && <p className="mt-1.5 text-xs text-red-600 font-sans">{errors.email}</p>}
+                {errors.email && (
+                  <p className="mt-1.5 text-xs text-red-600 font-sans">{errors.email}</p>
+                )}
               </div>
             </div>
 
@@ -312,7 +417,10 @@ export const EnquiryForm: React.FC = () => {
                     key={item.key}
                     type="button"
                     onClick={() =>
-                      setFormData({ ...formData, weddingDateType: item.key as WeddingEnquiryData['weddingDateType'] })
+                      setFormData({
+                        ...formData,
+                        weddingDateType: item.key as WeddingEnquiryData['weddingDateType'],
+                      })
                     }
                     className={`py-2.5 px-4 text-xs font-sans tracking-wider uppercase border transition-all text-center cursor-pointer ${
                       formData.weddingDateType === item.key
@@ -328,10 +436,16 @@ export const EnquiryForm: React.FC = () => {
               {formData.weddingDateType !== 'not_finalized' && (
                 <div className="max-w-xs">
                   <input
+                    id="weddingDateValue"
+                    name="weddingDateValue"
                     type={formData.weddingDateType === 'exact' ? 'date' : 'text'}
-                    placeholder={formData.weddingDateType === 'exact' ? '' : 'e.g. November / December 2026'}
+                    placeholder={
+                      formData.weddingDateType === 'exact' ? '' : 'e.g. November / December 2026'
+                    }
                     value={formData.weddingDateValue || ''}
-                    onChange={(e) => setFormData({ ...formData, weddingDateValue: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, weddingDateValue: e.target.value })
+                    }
                     className="w-full px-3.5 py-2.5 bg-[#F8F5EE] border border-[#032B24]/20 focus:border-[#032B24] text-sm text-[#032B24] outline-none"
                   />
                 </div>
@@ -342,11 +456,15 @@ export const EnquiryForm: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
               {/* 5. Destination / City */}
               <div className="sm:col-span-2 md:col-span-1">
-                <label htmlFor="destinationCity" className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2">
-                  5. Preferred City <span className="text-[#B89248]">*</span>
+                <label
+                  htmlFor="destinationCity"
+                  className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2"
+                >
+                  5. Preferred City <span className="text-[#758361]">*</span>
                 </label>
                 <input
                   id="destinationCity"
+                  name="destinationCity"
                   type="text"
                   value={formData.destinationCity}
                   onChange={(e) => setFormData({ ...formData, destinationCity: e.target.value })}
@@ -355,21 +473,32 @@ export const EnquiryForm: React.FC = () => {
                     errors.destinationCity ? 'border-red-600' : 'border-[#032B24]/20 focus:border-[#032B24]'
                   } text-sm text-[#032B24] placeholder-[#032B24]/40 outline-none`}
                 />
-                {errors.destinationCity && <p className="mt-1 text-xs text-red-600">{errors.destinationCity}</p>}
+                {errors.destinationCity && (
+                  <p className="mt-1 text-xs text-red-600">{errors.destinationCity}</p>
+                )}
               </div>
 
               {/* 6. Number of Guests */}
               <div>
-                <label htmlFor="guestCount" className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2">
+                <label
+                  htmlFor="guestCount"
+                  className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2"
+                >
                   6. Guest Count
                 </label>
                 <input
                   id="guestCount"
+                  name="guestCount"
                   type="number"
                   min="20"
                   max="5000"
                   value={formData.guestCount}
-                  onChange={(e) => setFormData({ ...formData, guestCount: e.target.value === '' ? '' : Number(e.target.value) })}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      guestCount: e.target.value === '' ? '' : Number(e.target.value),
+                    })
+                  }
                   placeholder="e.g. 300"
                   className="w-full px-3.5 py-2.5 bg-[#F8F5EE] border border-[#032B24]/20 focus:border-[#032B24] text-sm text-[#032B24] outline-none"
                 />
@@ -377,16 +506,25 @@ export const EnquiryForm: React.FC = () => {
 
               {/* 7. Number of Rooms Required */}
               <div>
-                <label htmlFor="roomsRequired" className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2">
+                <label
+                  htmlFor="roomsRequired"
+                  className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2"
+                >
                   7. Rooms Needed
                 </label>
                 <input
                   id="roomsRequired"
+                  name="roomsRequired"
                   type="number"
                   min="0"
                   max="1000"
                   value={formData.roomsRequired}
-                  onChange={(e) => setFormData({ ...formData, roomsRequired: e.target.value === '' ? '' : Number(e.target.value) })}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      roomsRequired: e.target.value === '' ? '' : Number(e.target.value),
+                    })
+                  }
                   placeholder="e.g. 80"
                   className="w-full px-3.5 py-2.5 bg-[#F8F5EE] border border-[#032B24]/20 focus:border-[#032B24] text-sm text-[#032B24] outline-none"
                 />
@@ -394,36 +532,45 @@ export const EnquiryForm: React.FC = () => {
 
               {/* 8. Number of Functions */}
               <div>
-                <label htmlFor="functionCount" className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2">
+                <label
+                  htmlFor="functionCount"
+                  className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2"
+                >
                   8. Functions
                 </label>
                 <input
                   id="functionCount"
+                  name="functionCount"
                   type="number"
                   min="1"
                   max="15"
                   value={formData.functionCount}
-                  onChange={(e) => setFormData({ ...formData, functionCount: e.target.value === '' ? '' : Number(e.target.value) })}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      functionCount: e.target.value === '' ? '' : Number(e.target.value),
+                    })
+                  }
                   placeholder="e.g. 4"
                   className="w-full px-3.5 py-2.5 bg-[#F8F5EE] border border-[#032B24]/20 focus:border-[#032B24] text-sm text-[#032B24] outline-none"
                 />
               </div>
             </div>
 
-            {/* 9. Approximate Budget */}
+            {/* 9. Approximate Budget (30 - 50 Lakhs, 50 - 70 Lakhs, 70 Lakh - 1 Cr, 1 CR +) */}
             <div className="mb-8">
               <label className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2.5">
                 9. Approximate Wedding Budget
               </label>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                 {BUDGET_RANGES.map((range) => (
                   <button
                     key={range}
                     type="button"
                     onClick={() => setFormData({ ...formData, approximateBudget: range })}
-                    className={`py-2 px-3 text-xs font-sans border transition-all text-center cursor-pointer ${
+                    className={`py-2.5 px-3 text-xs font-sans border transition-all text-center cursor-pointer ${
                       formData.approximateBudget === range
-                        ? 'bg-[#032B24] text-[#758361] border-[#032B24] font-medium'
+                        ? 'bg-[#032B24] text-[#758361] border-[#032B24] font-medium shadow-xs'
                         : 'bg-[#F8F5EE] text-[#032B24]/80 border-[#032B24]/20 hover:border-[#032B24]/50'
                     }`}
                   >
@@ -437,9 +584,11 @@ export const EnquiryForm: React.FC = () => {
             <div className="mb-8">
               <div className="flex items-center justify-between mb-3">
                 <label className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24]">
-                  10. What do you need help with? <span className="text-[#B89248]">*</span>
+                  10. What do you need help with? <span className="text-[#758361]">*</span>
                 </label>
-                <span className="text-[11px] font-sans text-[#032B24]/55 tracking-wider">Select all that apply</span>
+                <span className="text-[11px] font-sans text-[#032B24]/55 tracking-wider">
+                  Select all that apply
+                </span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -458,30 +607,45 @@ export const EnquiryForm: React.FC = () => {
                     >
                       <div
                         className={`w-4 h-4 border flex items-center justify-center shrink-0 transition-colors ${
-                          isChecked ? 'border-[#032B24] bg-[#032B24] text-[#758361]' : 'border-[#032B24]/30 bg-transparent'
+                          isChecked
+                            ? 'border-[#032B24] bg-[#032B24] text-[#758361]'
+                            : 'border-[#032B24]/30 bg-transparent'
                         }`}
                       >
                         {isChecked && (
                           <svg className="w-3 h-3 stroke-current" fill="none" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2.5"
+                              d="M5 13l4 4L19 7"
+                            />
                           </svg>
                         )}
                       </div>
-                      <span className="text-xs font-sans tracking-wide font-medium">{service.label}</span>
+                      <span className="text-xs font-sans tracking-wide font-medium">
+                        {service.label}
+                      </span>
                     </button>
                   );
                 })}
               </div>
-              {errors.servicesNeeded && <p className="mt-1.5 text-xs text-red-600">{errors.servicesNeeded}</p>}
+              {errors.servicesNeeded && (
+                <p className="mt-1.5 text-xs text-red-600">{errors.servicesNeeded}</p>
+              )}
             </div>
 
             {/* 11. Additional Notes */}
             <div className="mb-8">
-              <label htmlFor="additionalNotes" className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2">
+              <label
+                htmlFor="additionalNotes"
+                className="block text-xs font-sans font-medium uppercase tracking-[0.16em] text-[#032B24] mb-2"
+              >
                 11. Anything else we should know?
               </label>
               <textarea
                 id="additionalNotes"
+                name="additionalNotes"
                 rows={3}
                 value={formData.additionalNotes}
                 onChange={(e) => setFormData({ ...formData, additionalNotes: e.target.value })}
@@ -497,15 +661,19 @@ export const EnquiryForm: React.FC = () => {
                 <input
                   type="checkbox"
                   id="complimentaryRideCheckbox"
+                  name="complimentaryRideRequested"
+                  value="Yes"
                   checked={formData.complimentaryRideRequested ?? true}
-                  onChange={(e) => setFormData({ ...formData, complimentaryRideRequested: e.target.checked })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, complimentaryRideRequested: e.target.checked })
+                  }
                   className="mt-1 w-4 h-4 accent-[#032B24] cursor-pointer shrink-0"
                 />
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1 text-xs sm:text-[13px] font-serif uppercase tracking-wider text-[#032B24] font-semibold">
                     <span>Free Client Privilege</span>
                     <span>·</span>
-                    <span className="text-[#B89248]">Free Luxury Car for Venue Visits</span>
+                    <span className="text-[#758361]">Free Luxury Car for Venue Visits</span>
                   </div>
                   <p className="text-xs sm:text-[13px] text-[#032B24]/80 font-sans leading-relaxed font-light">
                     Yes, arrange a <strong>free chauffeured luxury car</strong> to visit our top shortlisted venues before we book anything. Accompanied by your senior planner with zero booking obligations.
@@ -513,6 +681,45 @@ export const EnquiryForm: React.FC = () => {
                 </div>
               </label>
             </div>
+
+            {/* Submission Error Banner */}
+            {submitError && (
+              <div className="mb-6 p-4 sm:p-5 bg-red-50 border border-red-300 text-red-900 text-xs sm:text-sm font-sans flex items-start gap-3 shadow-xs">
+                <svg
+                  className="w-5 h-5 text-red-600 shrink-0 mt-0.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                  />
+                </svg>
+                <div className="flex-1 space-y-2">
+                  <p className="font-medium leading-relaxed">{submitError}</p>
+                  <div className="flex flex-wrap items-center gap-3 pt-1">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="px-3 py-1 bg-red-700 text-white text-xs font-semibold uppercase tracking-wider hover:bg-red-800 transition-colors cursor-pointer"
+                    >
+                      Retry Submission
+                    </button>
+                    <a
+                      href={`https://wa.me/918800843189?text=${encodeURIComponent(`Hello The House of Weddings, I was submitting my enquiry for ${formData.fullName || 'our wedding'} in ${formData.destinationCity || 'India'}. Could we connect directly on WhatsApp?`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-red-800 font-semibold underline underline-offset-2 hover:text-red-950"
+                    >
+                      Connect on WhatsApp &rarr;
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Submit Button */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#032B24]/10">
@@ -523,9 +730,15 @@ export const EnquiryForm: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full sm:w-auto px-8 py-3.5 text-xs sm:text-[13px] font-sans font-semibold tracking-[0.16em] uppercase text-[#032B24] bg-gradient-to-r from-[#758361] via-[#859470] to-[#758361] hover:shadow-[0_4px_20px_rgba(117,131,97,0.4)] text-white hover:brightness-110 active:brightness-95 transition-all border border-[#758361] shadow-sm disabled:opacity-60 whitespace-nowrap cursor-pointer"
+                className="w-full sm:w-auto px-8 py-3.5 text-xs sm:text-[13px] font-sans font-semibold tracking-[0.16em] uppercase text-white bg-gradient-to-r from-[#758361] via-[#859470] to-[#758361] hover:brightness-110 active:brightness-95 transition-all border border-[#758361] shadow-sm disabled:opacity-60 whitespace-nowrap cursor-pointer flex items-center justify-center gap-2"
               >
-                {isSubmitting ? 'Sending Details...' : 'Submit & Book Free Call'}
+                {isSubmitting && (
+                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                )}
+                <span>{isSubmitting ? 'Sending Details...' : 'Submit & Book Free Call'}</span>
               </button>
             </div>
           </form>

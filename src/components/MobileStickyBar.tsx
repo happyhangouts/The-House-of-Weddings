@@ -3,7 +3,7 @@ import { CONTACT_INFO } from '../config/contact';
 
 interface MobileStickyBarProps {
   onPlanClick: () => void;
-  onOpenBrochure?: () => void;
+  onOpenBrochure?: (type?: 'maison' | 'management') => void;
 }
 
 export const MobileStickyBar: React.FC<MobileStickyBarProps> = ({ onPlanClick, onOpenBrochure }) => {
@@ -55,14 +55,14 @@ export const MobileStickyBar: React.FC<MobileStickyBarProps> = ({ onPlanClick, o
         {/* Brochure Download Button */}
         {onOpenBrochure && (
           <button
-            onClick={onOpenBrochure}
+            onClick={() => onOpenBrochure('maison')}
             type="button"
             className="flex items-center justify-center gap-1 px-2.5 py-2.5 bg-[#02231D] text-[#758361] hover:text-white hover:bg-[#758361] border border-[#758361]/50 text-[10px] font-sans font-medium uppercase tracking-wider shrink-0 cursor-pointer transition-colors"
           >
             <svg className="w-3.5 h-3.5 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2.2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
             </svg>
-            <span>Brochure</span>
+            <span>Brochures</span>
           </button>
         )}
 

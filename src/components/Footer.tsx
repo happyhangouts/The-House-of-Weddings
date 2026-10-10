@@ -2,11 +2,7 @@ import React from 'react';
 import { HWLogo } from './Logo';
 import { CONTACT_INFO } from '../config/contact';
 
-interface FooterProps {
-  onOpenLogoUpload?: () => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onOpenLogoUpload }) => {
+export const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-[#02201A] text-[#F8F5EE] py-16 sm:py-24 border-t border-[#758361]/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,15 +19,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLogoUpload }) => {
             <p className="font-sans text-xs text-[#F8F5EE]/70 font-light mt-2 leading-relaxed">
               Palace and luxury hotel venues, 3D venue setup designs, guest RSVP tracking, and complete wedding day coordination.
             </p>
-            {onOpenLogoUpload && (
-              <button
-                type="button"
-                onClick={onOpenLogoUpload}
-                className="mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-sans uppercase tracking-wider text-[#758361] hover:text-white hover:bg-[#758361] border border-[#758361]/40 transition-all cursor-pointer"
-              >
-                <span>✦ Upload Custom Brand Logo</span>
-              </button>
-            )}
           </div>
 
           {/* Destinations & Contacts */}
