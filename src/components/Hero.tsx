@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { HWLogo } from './Logo';
 import heroBgImg from '../assets/images/hero_luxury_wedding_venue_1790246590642.jpg';
 
@@ -7,24 +7,7 @@ interface HeroProps {
   onOpenBrochure?: (type?: 'maison' | 'management') => void;
 }
 
-interface PaletteSwatch {
-  name: string;
-  hex: string;
-  role: string;
-}
-
-const PALETTE_SWATCHES: PaletteSwatch[] = [
-  { name: 'Champagne', hex: '#e6d5b0', role: 'Default Preview · Arch & Motifs' },
-  { name: 'Deep Sage', hex: '#3b4637', role: 'Selected Chip · Buttons & Calculator' },
-  { name: 'Ivory', hex: '#f7f3ea', role: 'Main Page Canvas' },
-  { name: 'Sage', hex: '#5d6b57', role: 'Headline Accent & Botannicals' },
-  { name: 'Gold', hex: '#a8844a', role: 'Step Numerals & Accents' },
-];
-
 export const Hero: React.FC<HeroProps> = ({ onStartClick, onOpenBrochure }) => {
-  // Default preview is Champagne (#e6d5b0) as specified, with Deep Sage (#3b4637) as selected chip
-  const [selectedChipIndex, setSelectedChipIndex] = useState<number>(1); // Deep Sage selected chip
-
   return (
     <section className="relative w-full overflow-hidden bg-[#1d201b] text-[#f7f3ea]" id="hero">
       {/* Background Image Container with Royal Palace Visual */}
@@ -76,12 +59,12 @@ export const Hero: React.FC<HeroProps> = ({ onStartClick, onOpenBrochure }) => {
           </h1>
 
           {/* Body Text in Hanken Grotesk */}
-          <p className="font-sans text-sm sm:text-base md:text-lg font-light text-[#f7f3ea]/85 max-w-xl leading-relaxed mb-8 sm:mb-9">
+          <p className="font-sans text-sm sm:text-base md:text-lg font-light text-[#f7f3ea]/85 max-w-xl leading-relaxed mb-8 sm:mb-10">
             Bespoke venue curation, guest hospitality, and on-ground coordination across India&apos;s finest destination palaces.
           </p>
 
           {/* Clean Dual CTAs: Primary in Deep Sage (#3b4637) with Gold Accent Border (#a8844a) */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full max-w-md mb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full max-w-md mb-10 sm:mb-12">
             <button
               onClick={onStartClick}
               type="button"
@@ -104,62 +87,8 @@ export const Hero: React.FC<HeroProps> = ({ onStartClick, onOpenBrochure }) => {
             )}
           </div>
 
-          {/* Signature Wedding Palette Preview Chip Widget */}
-          <div className="w-full max-w-lg mx-auto bg-[#1d201b]/70 backdrop-blur-sm border border-[#e6d5b0]/30 p-3.5 sm:p-4 mb-6 shadow-sm">
-            <div className="flex items-center justify-between mb-2.5">
-              <span className="text-[9.5px] sm:text-[10px] font-sans uppercase tracking-[0.22em] text-[#e6d5b0] font-semibold">
-                Royal Wedding Palette Preview
-              </span>
-              <span className="text-[9px] font-sans text-[#ddd5c3]/80">
-                Active: <span className="text-[#e6d5b0] font-medium">{PALETTE_SWATCHES[selectedChipIndex].name}</span>
-              </span>
-            </div>
-
-            <div className="flex items-center justify-center gap-2 sm:gap-3">
-              {PALETTE_SWATCHES.map((swatch, idx) => {
-                const isSelected = selectedChipIndex === idx;
-                const isDefaultPreview = swatch.hex === '#e6d5b0'; // Champagne default preview
-                const isDeepSage = swatch.hex === '#3b4637'; // Deep sage chip
-
-                return (
-                  <button
-                    key={swatch.name}
-                    type="button"
-                    onClick={() => setSelectedChipIndex(idx)}
-                    title={`${swatch.name} (${swatch.hex}) — ${swatch.role}`}
-                    className={`group relative flex flex-col items-center p-1.5 transition-all cursor-pointer rounded-xs ${
-                      isSelected
-                        ? 'ring-2 ring-[#a8844a] scale-105 bg-[#3b4637]/60'
-                        : 'hover:bg-white/5 opacity-85 hover:opacity-100'
-                    }`}
-                  >
-                    <div
-                      className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full border shadow-sm transition-transform ${
-                        isSelected ? 'border-[#f7f3ea] shadow-md' : 'border-[#ddd5c3]/40'
-                      }`}
-                      style={{ backgroundColor: swatch.hex }}
-                    />
-                    <span className="text-[8px] sm:text-[9px] font-sans tracking-wider uppercase mt-1 text-[#f7f3ea]/80">
-                      {swatch.name.split(' ')[0]}
-                    </span>
-                    {isDefaultPreview && (
-                      <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#e6d5b0]" title="Default Palette Arch Preview" />
-                    )}
-                    {isDeepSage && (
-                      <span className="text-[7px] text-[#e6d5b0] tracking-tighter uppercase mt-0.5">Chip</span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-            
-            <p className="text-[10px] font-sans text-[#ddd5c3]/75 mt-2 text-center font-light">
-              {PALETTE_SWATCHES[selectedChipIndex].role}
-            </p>
-          </div>
-
           {/* Minimalist Destination Signature */}
-          <div className="pt-4 border-t border-[#ddd5c3]/20 text-[10px] sm:text-[11px] font-sans tracking-[0.24em] uppercase text-[#e6d5b0]/90 flex items-center gap-2 sm:gap-3">
+          <div className="pt-6 border-t border-[#ddd5c3]/20 text-[10px] sm:text-[11px] font-sans tracking-[0.24em] uppercase text-[#e6d5b0]/90 flex items-center gap-2 sm:gap-3">
             <span>Jaipur</span>
             <span className="text-[#a8844a]">·</span>
             <span>Udaipur</span>
