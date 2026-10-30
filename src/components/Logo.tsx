@@ -13,7 +13,7 @@ export const LogoMark: React.FC<{ className?: string }> = ({
 }) => {
   const { logoSrc } = useLogo();
   return (
-    <div className={`border-2 border-[#758361] overflow-hidden shadow-sm shrink-0 bg-white p-0.5 ${className}`}>
+    <div className={`border-2 border-[#a8844a] dark:border-[#c9a96a] overflow-hidden shadow-sm shrink-0 bg-white p-0.5 ${className}`}>
       <img
         src={logoSrc}
         alt="The House of Weddings Emblem"
@@ -76,9 +76,9 @@ export const HWLogo: React.FC<LogoProps> = ({
             transformStyle: 'preserve-3d',
           }}
         >
-          {/* Authentic White-Enamel & Sage-Bordered Official Emblem */}
+          {/* Authentic White-Enamel & Gold-Bordered Official Emblem */}
           <div
-            className={`${sizeClasses} border-2 border-[#758361] p-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.5)] overflow-hidden bg-white shrink-0 transition-all duration-300`}
+            className={`${sizeClasses} border-2 border-[#a8844a] dark:border-[#c9a96a] p-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.5)] overflow-hidden bg-white shrink-0 transition-all duration-300`}
           >
             <img
               src={logoSrc}
@@ -100,7 +100,7 @@ export const HWLogo: React.FC<LogoProps> = ({
   // Horizontal variant (Unified sticky navigation header emblem & typography)
   return (
     <div className={`flex items-center gap-2 sm:gap-3.5 shrink-0 ${className}`}>
-      <div className="w-10 h-10 sm:w-11 sm:h-11 border-2 border-[#758361] overflow-hidden shadow-sm shrink-0 bg-white p-0.5">
+      <div className="w-10 h-10 sm:w-11 sm:h-11 border-2 border-[#a8844a] dark:border-[#c9a96a] overflow-hidden shadow-sm shrink-0 bg-white p-0.5">
         <img
           src={logoSrc}
           alt="The House of Weddings"
@@ -110,13 +110,13 @@ export const HWLogo: React.FC<LogoProps> = ({
         />
       </div>
       <div className="flex flex-col text-left shrink-0">
-        <span className="font-serif text-[11px] sm:text-base tracking-[0.12em] sm:tracking-[0.2em] uppercase font-normal text-[#F8F5EE] leading-tight whitespace-nowrap">
+        <span className="font-serif text-[11px] sm:text-base tracking-[0.12em] sm:tracking-[0.2em] uppercase font-normal text-[#f7f3ea] leading-tight whitespace-nowrap">
           The House of Weddings
         </span>
         <div className="flex items-center gap-1.5 sm:gap-2 mt-0.5">
-          <span className="w-2.5 sm:w-3.5 h-[0.5px] bg-[#758361]" />
-          <span className="text-[7.5px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.24em] uppercase font-serif italic text-[#758361] whitespace-nowrap">
-            by <span className="not-italic tracking-[0.2em] text-[#F8F5EE]/90">Mubaarqaan</span>
+          <span className="w-2.5 sm:w-3.5 h-[0.5px] bg-[#a8844a] dark:bg-[#c9a96a]" />
+          <span className="text-[7.5px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.24em] uppercase font-serif italic text-[#e6d5b0] whitespace-nowrap">
+            by <span className="not-italic tracking-[0.2em] text-[#f7f3ea]/90">Mubaarqaan</span>
           </span>
         </div>
       </div>

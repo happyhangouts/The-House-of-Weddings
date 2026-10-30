@@ -145,7 +145,7 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({ onPlanClick }) => 
   return (
     <section
       id="client-stories"
-      className="relative py-24 sm:py-32 bg-[#02201A] text-[#F8F5EE] overflow-hidden border-t border-[#758361]/30"
+      className="relative py-24 sm:py-32 bg-[#1d201b] text-[#f7f3ea] overflow-hidden border-t border-[#a8844a]/30"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -153,31 +153,31 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({ onPlanClick }) => 
       onTouchEnd={handleTouchEnd}
     >
       {/* Background Subtle Warm Backlight */}
-      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#758361]/5 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-10 w-[500px] h-[500px] bg-[#032B24]/80 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#a8844a]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 left-10 w-[500px] h-[500px] bg-[#3b4637]/30 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="w-10 h-[1px] bg-[#758361]" />
-            <span className="text-[11px] font-sans tracking-[0.24em] uppercase text-[#758361] font-semibold">
+            <span className="w-10 h-[1px] bg-[#a8844a]" />
+            <span className="text-[11px] font-sans tracking-[0.24em] uppercase text-[#e6d5b0] font-semibold">
               REAL CLIENT STORIES
             </span>
-            <span className="w-10 h-[1px] bg-[#758361]" />
+            <span className="w-10 h-[1px] bg-[#a8844a]" />
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#F8F5EE] tracking-[0.08em] uppercase mb-5 leading-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#f7f3ea] tracking-[0.08em] uppercase mb-5 leading-tight">
             Couples We&apos;ve Helped in India
           </h2>
-          <p className="font-sans text-base sm:text-lg text-[#F8F5EE]/80 font-light max-w-2xl mx-auto leading-relaxed">
+          <p className="font-sans text-base sm:text-lg text-[#ddd5c3]/80 font-light max-w-2xl mx-auto leading-relaxed">
             Real weddings planned across India&apos;s best palaces and resorts, where families saved lakhs and enjoyed every moment.
           </p>
-          <div className="w-20 h-[1px] bg-[#758361]/40 mx-auto mt-6" />
+          <div className="w-20 h-[1px] bg-[#a8844a]/40 mx-auto mt-6" />
         </div>
 
         {/* Carousel Card Container */}
-        <div className="relative bg-[#032B24]/90 border border-[#758361]/30 shadow-[0_25px_60px_rgba(0,0,0,0.6)] backdrop-blur-sm overflow-hidden">
+        <div className="relative bg-[#232721] border border-[#a8844a]/40 shadow-[0_25px_60px_rgba(0,0,0,0.6)] backdrop-blur-sm overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[580px]">
             
             {/* Visual Photography Column */}
@@ -189,83 +189,84 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({ onPlanClick }) => 
                 className="w-full h-full object-cover object-center filter brightness-[0.88] contrast-[1.05] transition-all duration-700 ease-out group-hover:scale-105"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#02201A] via-transparent to-black/30 lg:bg-gradient-to-r lg:from-transparent lg:via-[#032B24]/40 lg:to-[#032B24]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1d201b] via-transparent to-black/30 lg:bg-gradient-to-r lg:from-transparent lg:via-[#232721]/50 lg:to-[#232721]" />
 
               {/* Destination Tagline Overlay */}
               <div className="absolute bottom-6 left-6 right-6">
-                <div className="inline-flex items-center gap-2 bg-[#02201A]/85 backdrop-blur-md px-3.5 py-1.5 border border-[#758361]/30 mb-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#758361] animate-pulse" />
-                  <span className="text-[10px] tracking-wider uppercase font-sans text-[#758361]">
+                <div className="inline-flex items-center gap-2 bg-[#1d201b]/85 backdrop-blur-md px-3.5 py-1.5 border border-[#a8844a]/40 mb-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#a8844a] animate-pulse" />
+                  <span className="text-[10px] tracking-wider uppercase font-sans text-[#e6d5b0]">
                     {current.location}
                   </span>
                 </div>
-                <h4 className="font-serif text-xl sm:text-2xl text-[#F8F5EE] tracking-wide">
+                <h4 className="font-serif text-xl sm:text-2xl text-[#f7f3ea] tracking-wide">
                   {current.venue}
                 </h4>
-                <p className="text-xs text-[#F8F5EE]/70 font-sans tracking-wider mt-0.5 font-light">
+                <p className="text-xs text-[#ddd5c3]/70 font-sans tracking-wider mt-0.5 font-light">
                   {current.scale}
                 </p>
               </div>
 
               {/* Slide Counter on Image */}
-              <div className="absolute top-6 left-6 font-serif text-sm tracking-widest text-[#758361] bg-[#02201A]/90 px-3 py-1 border border-[#758361]/30">
+              <div className="absolute top-6 left-6 font-serif text-sm tracking-widest text-[#e6d5b0] bg-[#1d201b]/90 px-3 py-1 border border-[#a8844a]/40">
                 0{currentIndex + 1} / 0{STORIES.length}
               </div>
             </div>
 
             {/* Editorial Content Column */}
-            <div className="lg:col-span-6 p-6 sm:p-10 lg:p-14 flex flex-col justify-between relative bg-gradient-to-b from-[#032B24] to-[#02201A]">
+            <div className="lg:col-span-6 p-6 sm:p-10 lg:p-14 flex flex-col justify-between relative bg-gradient-to-b from-[#232721] to-[#1d201b]">
               <div>
                 {/* Couple Name & Simple Tags */}
-                <div className="flex flex-wrap items-center gap-2 mb-4 text-[10px] uppercase tracking-wider font-sans text-[#758361]">
+                <div className="flex flex-wrap items-center gap-2 mb-4 text-[10px] uppercase tracking-wider font-sans text-[#e6d5b0]">
                   {current.tags.map((tag, idx) => (
                     <React.Fragment key={tag}>
                       <span>{tag}</span>
-                      {idx < current.tags.length - 1 && <span className="text-[#758361]/40">·</span>}
+                      {idx < current.tags.length - 1 && <span className="text-[#a8844a]/50">·</span>}
                     </React.Fragment>
                   ))}
                 </div>
 
-                <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#F8F5EE] tracking-[0.06em] uppercase mb-4">
+                <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#f7f3ea] tracking-[0.06em] uppercase mb-4">
                   {current.couple}
                 </h3>
 
-                {/* Savings Box */}
-                <div className="my-6 p-4 sm:p-5 bg-[#02201A] border-l-2 border-[#758361] border-y border-r border-[#758361]/20">
-                  <span className="text-[10px] uppercase font-sans tracking-wider text-[#758361] block mb-1 font-semibold">
+                {/* Savings Box with Cormorant Garamond Numerals */}
+                <div className="my-6 p-4 sm:p-5 bg-[#1d201b] border-l-2 border-[#a8844a] border-y border-r border-[#a8844a]/30">
+                  <span className="text-[10px] uppercase font-sans tracking-wider text-[#e6d5b0] block mb-1 font-semibold">
                     {current.savingsTitle}
                   </span>
                   <div className="flex items-baseline gap-3">
-                    <span className="font-serif text-2xl sm:text-3xl text-[#758361] font-medium tracking-wide">
+                    <span className="font-serif text-2xl sm:text-4xl text-[#a8844a] dark:text-[#c9a96a] font-medium tracking-wide">
                       {current.savingsAmount}
                     </span>
-                    <span className="text-xs text-[#F8F5EE]/65 font-sans font-light">
+                    <span className="text-xs text-[#ddd5c3]/70 font-sans font-light">
                       Verified savings on hotel rooms, catering, and decor
                     </span>
                   </div>
                 </div>
 
-                {/* Testimonial Quote */}
+                {/* Testimonial Quote with Gold Quote Lines (#a8844a) */}
                 <div className="relative mb-6">
-                  <span className="absolute -top-4 -left-2 text-4xl sm:text-5xl font-serif text-[#758361]/20 select-none pointer-events-none">
+                  <span className="absolute -top-4 -left-2 text-4xl sm:text-5xl font-serif text-[#a8844a]/30 select-none pointer-events-none">
                     “
                   </span>
-                  <p className="font-sans text-sm sm:text-base text-[#F8F5EE]/90 leading-relaxed font-light italic pl-4 border-l border-[#758361]/20">
+                  {/* Quote Lines in Gold (#a8844a) */}
+                  <p className="font-sans text-sm sm:text-base text-[#f7f3ea]/90 leading-relaxed font-light italic pl-4 border-l-2 border-[#a8844a] dark:border-[#c9a96a]">
                     &ldquo;{current.quote}&rdquo;
                   </p>
-                  <p className="text-xs font-serif tracking-wider uppercase text-[#758361] mt-3 pl-4">
+                  <p className="text-xs font-serif tracking-wider uppercase text-[#e6d5b0] mt-3 pl-4">
                     — {current.attribution}
                   </p>
                 </div>
 
                 {/* Key Execution Milestones */}
-                <div className="space-y-2 mt-4 pt-4 border-t border-[#758361]/15">
-                  <span className="text-[10px] uppercase font-sans tracking-wider text-[#758361] block mb-2 font-semibold">
+                <div className="space-y-2 mt-4 pt-4 border-t border-[#ddd5c3]/15">
+                  <span className="text-[10px] uppercase font-sans tracking-wider text-[#e6d5b0] block mb-2 font-semibold">
                     How We Made It Happen:
                   </span>
                   {current.keyWins.map((win, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-xs text-[#F8F5EE]/80 font-light">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#758361] mt-1.5 shrink-0" />
+                    <div key={idx} className="flex items-start gap-2.5 text-xs text-[#ddd5c3]/80 font-light">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#a8844a] mt-1.5 shrink-0" />
                       <span>{win}</span>
                     </div>
                   ))}
@@ -273,7 +274,7 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({ onPlanClick }) => 
               </div>
 
               {/* Navigation Controls Bar */}
-              <div className="pt-8 mt-6 border-t border-[#758361]/15 flex items-center justify-between">
+              <div className="pt-8 mt-6 border-t border-[#ddd5c3]/15 flex items-center justify-between">
                 {/* Thumbnails */}
                 <div className="flex items-center gap-2">
                   {STORIES.map((story, idx) => (
@@ -281,19 +282,19 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({ onPlanClick }) => 
                       key={story.id}
                       onClick={() => goToSlide(idx)}
                       className={`h-1.5 transition-all cursor-pointer ${
-                        currentIndex === idx ? 'w-8 bg-[#758361]' : 'w-2 bg-[#F8F5EE]/30 hover:bg-[#758361]/60'
+                        currentIndex === idx ? 'w-8 bg-[#a8844a]' : 'w-2 bg-[#ddd5c3]/30 hover:bg-[#a8844a]/60'
                       }`}
                       aria-label={`Go to story ${idx + 1}`}
                     />
                   ))}
                 </div>
 
-                {/* Prev / Next Buttons & Action CTA */}
+                {/* Prev / Next Buttons & Action CTA in Deep Sage (#3b4637) */}
                 <div className="flex items-center gap-2 sm:gap-3">
                   <button
                     onClick={prevSlide}
                     aria-label="Previous story"
-                    className="p-2 border border-[#758361]/30 hover:border-[#758361] text-[#758361] hover:text-[#032B24] hover:bg-[#758361] transition-colors cursor-pointer"
+                    className="p-2 border border-[#a8844a]/40 hover:border-[#a8844a] text-[#e6d5b0] hover:text-[#1d201b] hover:bg-[#a8844a] transition-colors cursor-pointer"
                   >
                     <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -303,7 +304,7 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({ onPlanClick }) => 
                   <button
                     onClick={nextSlide}
                     aria-label="Next story"
-                    className="p-2 border border-[#758361]/30 hover:border-[#758361] text-[#758361] hover:text-[#032B24] hover:bg-[#758361] transition-colors cursor-pointer"
+                    className="p-2 border border-[#a8844a]/40 hover:border-[#a8844a] text-[#e6d5b0] hover:text-[#1d201b] hover:bg-[#a8844a] transition-colors cursor-pointer"
                   >
                     <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -313,7 +314,7 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({ onPlanClick }) => 
                   <button
                     onClick={onPlanClick}
                     type="button"
-                    className="ml-2 px-4 py-2 bg-gradient-to-r from-[#758361] via-[#859470] to-[#758361] text-white text-xs font-sans uppercase tracking-wider font-semibold hover:brightness-110 border border-[#758361] transition-all cursor-pointer whitespace-nowrap"
+                    className="ml-2 px-4 py-2 bg-[#3b4637] hover:bg-[#2b3428] text-[#f7f3ea] text-xs font-sans uppercase tracking-wider font-semibold border border-[#a8844a] shadow-sm transition-all cursor-pointer whitespace-nowrap"
                   >
                     Plan Your Wedding
                   </button>

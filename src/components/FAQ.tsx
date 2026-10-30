@@ -75,24 +75,24 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="relative py-20 sm:py-28 bg-[#F1ECE0]/50 text-[#032B24] border-t border-[#032B24]/10">
+    <section id="faq" className="relative py-20 sm:py-28 bg-[#fbf9f3] dark:bg-[#232721] text-[#2a2a25] dark:text-[#f7f3ea] border-t border-[#ddd5c3] dark:border-[#3b4237]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-18">
           <div className="flex items-center justify-center gap-3 mb-3">
-            <span className="w-8 h-[1px] bg-[#758361]" />
-            <span className="text-[11px] font-sans tracking-[0.24em] uppercase text-[#032B24]/75 font-semibold">
+            <span className="w-8 h-[1px] bg-[#a8844a]" />
+            <span className="text-[11px] font-sans tracking-[0.24em] uppercase text-[#a8844a] dark:text-[#c9a96a] font-semibold">
               Frequently Asked Questions
             </span>
-            <span className="w-8 h-[1px] bg-[#758361]" />
+            <span className="w-8 h-[1px] bg-[#a8844a]" />
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#032B24] tracking-[0.08em] uppercase mb-4">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#2a2a25] dark:text-[#f7f3ea] tracking-[0.08em] uppercase mb-4">
             Got Questions?
           </h2>
-          <p className="font-sans text-base sm:text-lg text-[#032B24]/80 font-light">
+          <p className="font-sans text-base sm:text-lg text-[#6f6c62] dark:text-[#ddd5c3]/80 font-light">
             Simple, honest answers about how we help you find venues, design in 3D, and save money.
           </p>
-          <div className="w-16 h-[1px] bg-[#758361] mx-auto mt-6" />
+          <div className="w-16 h-[1px] bg-[#a8844a] mx-auto mt-6" />
         </div>
 
         {/* Accordion List */}
@@ -102,7 +102,7 @@ export const FAQ: React.FC = () => {
             return (
               <div
                 key={faq.question}
-                className="bg-[#FCFAF6] border border-[#032B24]/10 transition-colors duration-200 overflow-hidden"
+                className="bg-[#f7f3ea] dark:bg-[#1d201b] border border-[#ddd5c3] dark:border-[#3b4237] transition-colors duration-200 overflow-hidden"
               >
                 <button
                   type="button"
@@ -111,24 +111,24 @@ export const FAQ: React.FC = () => {
                   aria-expanded={isOpen}
                 >
                   <div>
-                    <span className="text-[10px] font-sans tracking-[0.2em] uppercase text-[#758361] font-semibold block mb-1">
+                    <span className="text-[10px] font-sans tracking-[0.2em] uppercase text-[#a8844a] dark:text-[#c9a96a] font-semibold block mb-1">
                       {faq.category}
                     </span>
-                    <h3 className="font-serif text-lg sm:text-xl text-[#032B24] font-normal leading-snug">
+                    <h3 className="font-serif text-lg sm:text-xl text-[#2a2a25] dark:text-[#f7f3ea] font-normal leading-snug">
                       {faq.question}
                     </h3>
                   </div>
 
-                  <span className="mt-1 w-6 h-6 rounded-full border border-[#032B24]/20 flex items-center justify-center text-sm font-sans text-[#032B24]/70 shrink-0 transition-transform duration-200">
+                  <span className="mt-1 w-6 h-6 rounded-full border border-[#ddd5c3] dark:border-[#3b4237] flex items-center justify-center text-sm font-sans text-[#2a2a25] dark:text-[#f7f3ea] shrink-0 transition-transform duration-200">
                     {isOpen ? '−' : '+'}
                   </span>
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 pt-1 text-sm sm:text-[15px] font-sans text-[#032B24]/80 leading-relaxed font-light border-t border-[#032B24]/5">
+                  <div className="px-6 pb-6 pt-1 text-sm sm:text-[15px] font-sans text-[#6f6c62] dark:text-[#ddd5c3]/85 leading-relaxed font-light border-t border-[#ddd5c3] dark:border-[#3b4237]">
                     <p className="mb-3">{faq.answer}</p>
                     {faq.highlight && (
-                      <div className="p-3 bg-[#F1ECE0]/70 border-l-2 border-[#758361] text-xs text-[#032B24] font-medium tracking-wide">
+                      <div className="p-3 bg-[#fbf9f3] dark:bg-[#232721] border-l-2 border-[#a8844a] text-xs text-[#2a2a25] dark:text-[#f7f3ea] font-medium tracking-wide">
                         {faq.highlight}
                       </div>
                     )}
@@ -140,18 +140,18 @@ export const FAQ: React.FC = () => {
         </div>
 
         {/* WhatsApp Direct Help Banner */}
-        <div className="mt-12 text-center p-6 bg-[#FCFAF6] border border-[#032B24]/10">
-          <p className="text-sm font-sans text-[#032B24]/80 mb-3">
+        <div className="mt-12 text-center p-6 bg-[#f7f3ea] dark:bg-[#1d201b] border border-[#ddd5c3] dark:border-[#3b4237]">
+          <p className="text-sm font-sans text-[#2a2a25] dark:text-[#f7f3ea] mb-3">
             Have a specific question about your wedding dates or venue?
           </p>
           <a
             href={CONTACT_INFO.whatsapp.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-sans tracking-[0.16em] uppercase font-semibold text-[#032B24] hover:text-[#B89248] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-sans tracking-[0.16em] uppercase font-semibold text-[#3b4637] dark:text-[#c9a96a] hover:underline transition-colors"
           >
             <span>Chat Directly With Us on WhatsApp ({CONTACT_INFO.whatsapp.display})</span>
-            <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+            <svg className="w-3.5 h-3.5 fill-current text-[#25D366]" viewBox="0 0 24 24">
               <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.41a8.177 8.177 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.45 0-2.87-.38-4.12-1.11l-.3-.17-3.12.82.83-3.04-.19-.31a8.21 8.21 0 0 1-1.26-4.43c0-4.54 3.69-8.24 8.24-8.24zM8.53 7.33c-.2 0-.44.02-.65.23-.26.26-.98.96-.98 2.34 0 1.38 1.01 2.72 1.15 2.91.14.19 1.95 3.05 4.77 4.24 2.34.99 2.82.79 3.32.75.51-.05 1.65-.67 1.88-1.33.24-.65.24-1.21.17-1.33-.07-.12-.26-.19-.55-.33s-1.69-.83-1.95-.93c-.26-.09-.45-.14-.64.14-.19.28-.74.93-.91 1.12-.17.19-.34.21-.63.07-.29-.14-1.22-.45-2.33-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.56-.47-.48-.65-.49-.17-.01-.36-.01-.56-.01z"/>
             </svg>
           </a>

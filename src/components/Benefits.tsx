@@ -100,52 +100,51 @@ export const Benefits: React.FC = () => {
   };
 
   return (
-    <section id="benefits" className="relative py-16 sm:py-28 bg-[#F1ECE0]/60 text-[#032B24] border-t border-[#032B24]/10">
+    <section id="benefits" className="relative py-16 sm:py-28 bg-[#fbf9f3] dark:bg-[#232721] text-[#2a2a25] dark:text-[#f7f3ea] border-t border-[#ddd5c3] dark:border-[#3b4237]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-20">
           <div className="flex items-center justify-center gap-3 mb-3">
-            <span className="w-8 h-[1px] bg-[#758361]" />
-            <span className="text-[10px] sm:text-[11px] font-sans tracking-[0.24em] uppercase text-[#032B24]/75 font-semibold">
+            <span className="w-8 h-[1px] bg-[#a8844a]" />
+            <span className="text-[10px] sm:text-[11px] font-sans tracking-[0.24em] uppercase text-[#a8844a] dark:text-[#c9a96a] font-semibold">
               WHY FAMILIES CHOOSE US
             </span>
-            <span className="w-8 h-[1px] bg-[#758361]" />
+            <span className="w-8 h-[1px] bg-[#a8844a]" />
           </div>
-          <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl font-normal text-[#032B24] tracking-[0.06em] sm:tracking-[0.08em] uppercase mb-3 sm:mb-4">
+          <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl font-normal text-[#2a2a25] dark:text-[#f7f3ea] tracking-[0.06em] sm:tracking-[0.08em] uppercase mb-3 sm:mb-4">
             Everything We Take Care Of
           </h2>
-          <p className="font-sans text-sm sm:text-lg text-[#032B24]/75 font-light">
+          <p className="font-sans text-sm sm:text-lg text-[#6f6c62] dark:text-[#ddd5c3]/80 font-light">
             Six simple promises to make your wedding joyful, organized, and stress-free.
           </p>
-          <div className="w-16 h-[1px] bg-[#758361] mx-auto mt-5 sm:mt-6" />
+          <div className="w-16 h-[1px] bg-[#a8844a] mx-auto mt-5 sm:mt-6" />
         </div>
 
         {/* Six Simple Benefit Blocks */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-10 mb-6 sm:mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8 mb-6 sm:mb-24">
           {STANDARDS.map((s, idx) => {
-            // On mobile, hide 04, 05, 06 unless showAllStandards is true
             const isHiddenMobile = idx >= 3 && !showAllStandards;
             return (
               <div
                 key={s.title}
                 className={`${
                   isHiddenMobile ? 'hidden sm:flex' : 'flex'
-                } p-6 sm:p-10 bg-[#FCFAF6] border border-[#032B24]/10 flex-col justify-between transition-colors duration-200 hover:border-[#758361] shadow-xs`}
+                } p-6 sm:p-9 bg-[#f7f3ea] dark:bg-[#1d201b] border border-[#ddd5c3] dark:border-[#3b4237] flex-col justify-between transition-colors duration-200 hover:border-[#a8844a] shadow-xs`}
               >
                 <div>
-                  <span className="text-xs font-sans tracking-[0.22em] text-[#758361] font-semibold block mb-2 sm:mb-3">
+                  <span className="font-serif text-2xl font-normal tracking-[0.1em] text-[#a8844a] dark:text-[#c9a96a] block mb-2 sm:mb-3">
                     {s.num}
                   </span>
-                  <h3 className="font-serif text-lg sm:text-2xl font-normal text-[#032B24] uppercase tracking-[0.05em] mb-2 sm:mb-3">
+                  <h3 className="font-serif text-lg sm:text-2xl font-normal text-[#2a2a25] dark:text-[#f7f3ea] uppercase tracking-[0.05em] mb-2 sm:mb-3">
                     {s.title}
                   </h3>
-                  <p className="font-sans text-xs sm:text-[15px] text-[#032B24]/80 leading-relaxed font-light">
+                  <p className="font-sans text-xs sm:text-[15px] text-[#6f6c62] dark:text-[#ddd5c3]/80 leading-relaxed font-light">
                     {s.description}
                   </p>
                 </div>
 
-                <div className="w-8 h-[1px] bg-[#032B24]/10 mt-5 sm:mt-8" />
+                <div className="w-8 h-[1px] bg-[#a8844a]/40 mt-5 sm:mt-8" />
               </div>
             );
           })}
@@ -156,7 +155,7 @@ export const Benefits: React.FC = () => {
           <button
             type="button"
             onClick={() => setShowAllStandards(!showAllStandards)}
-            className="w-full py-3 px-4 bg-[#FCFAF6] border border-[#758361]/50 text-xs font-sans uppercase tracking-[0.16em] text-[#032B24] font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+            className="w-full py-3 px-4 bg-[#f7f3ea] dark:bg-[#1d201b] border border-[#a8844a]/50 text-xs font-sans uppercase tracking-[0.16em] text-[#2a2a25] dark:text-[#f7f3ea] font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-xs"
           >
             <span>{showAllStandards ? 'Show Top 3 Standards ▲' : '✦ View All 6 Hospitality Promises ▼'}</span>
           </button>
@@ -165,13 +164,13 @@ export const Benefits: React.FC = () => {
         {/* Wedding Packages Section */}
         <div className="mt-8 sm:mt-16">
           <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-            <span className="text-[10px] sm:text-[11px] font-sans tracking-wider uppercase text-[#758361] font-bold block mb-1 sm:mb-2">
+            <span className="text-[10px] sm:text-[11px] font-sans tracking-wider uppercase text-[#a8844a] dark:text-[#c9a96a] font-bold block mb-1 sm:mb-2">
               TRANSPARENT PACKAGES
             </span>
-            <h3 className="font-serif text-xl sm:text-3xl md:text-4xl text-[#032B24] uppercase tracking-wide">
+            <h3 className="font-serif text-xl sm:text-3xl md:text-4xl text-[#2a2a25] dark:text-[#f7f3ea] uppercase tracking-wide">
               Wedding Management Packages
             </h3>
-            <p className="font-sans text-xs sm:text-sm text-[#032B24]/75 font-light mt-1.5 sm:mt-2">
+            <p className="font-sans text-xs sm:text-sm text-[#6f6c62] dark:text-[#ddd5c3]/80 font-light mt-1.5 sm:mt-2">
               Simple, straightforward management fees based on your guest count and celebration scale.
             </p>
           </div>
@@ -184,38 +183,39 @@ export const Benefits: React.FC = () => {
                   key={pkg.title}
                   className={`p-5 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
                     pkg.highlight
-                      ? 'bg-[#FCFAF6] border-2 border-[#758361] shadow-lg relative'
-                      : 'bg-[#FCFAF6] border border-[#032B24]/15 shadow-xs'
+                      ? 'bg-[#f7f3ea] dark:bg-[#1d201b] border-2 border-[#a8844a] shadow-lg relative'
+                      : 'bg-[#f7f3ea] dark:bg-[#1d201b] border border-[#ddd5c3] dark:border-[#3b4237] shadow-xs'
                   }`}
                 >
                   {pkg.highlight && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-[#758361] text-white text-[9px] font-sans font-bold uppercase tracking-wider shadow-sm">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-[#a8844a] text-[#1d201b] text-[9px] font-sans font-bold uppercase tracking-wider shadow-sm">
                       {pkg.badge}
                     </div>
                   )}
 
                   <div>
                     <div className="flex items-center justify-between mb-1.5 sm:mb-2">
-                      <span className="text-[9.5px] sm:text-[10px] font-sans uppercase tracking-wider text-[#758361] font-semibold">
+                      <span className="text-[9.5px] sm:text-[10px] font-sans uppercase tracking-wider text-[#a8844a] dark:text-[#c9a96a] font-semibold">
                         {pkg.badge}
                       </span>
                     </div>
 
-                    <h4 className="font-serif text-2xl sm:text-3xl font-normal text-[#032B24] tracking-wide mb-1">
+                    <h4 className="font-serif text-2xl sm:text-3xl font-normal text-[#2a2a25] dark:text-[#f7f3ea] tracking-wide mb-1">
                       {pkg.title}
                     </h4>
-                    <p className="text-xs font-sans text-[#032B24]/70 mb-3 sm:mb-4 font-light">
+                    <p className="text-xs font-sans text-[#6f6c62] dark:text-[#ddd5c3]/70 mb-3 sm:mb-4 font-light">
                       {pkg.scale}
                     </p>
 
-                    <div className="py-3 sm:py-4 border-y border-[#758361]/30 mb-4 sm:mb-6">
-                      <span className="text-[8.5px] sm:text-[9px] font-sans uppercase tracking-wider text-[#758361] font-semibold block mb-0.5">
+                    <div className="py-3 sm:py-4 border-y border-[#ddd5c3] dark:border-[#3b4237] mb-4 sm:mb-6">
+                      <span className="text-[8.5px] sm:text-[9px] font-sans uppercase tracking-wider text-[#a8844a] dark:text-[#c9a96a] font-semibold block mb-0.5">
                         MANAGEMENT FEE
                       </span>
-                      <div className="font-serif text-2xl sm:text-4xl font-bold text-[#032B24]">
+                      {/* Large Numerals in Cormorant Garamond */}
+                      <div className="font-serif text-2xl sm:text-4xl font-bold text-[#2a2a25] dark:text-[#f7f3ea]">
                         {pkg.fee}
                       </div>
-                      <p className="text-[11px] sm:text-xs font-sans italic text-[#032B24]/70 mt-1">
+                      <p className="text-[11px] sm:text-xs font-sans italic text-[#6f6c62] dark:text-[#ddd5c3]/70 mt-1">
                         {pkg.note}
                       </p>
                     </div>
@@ -227,8 +227,8 @@ export const Benefits: React.FC = () => {
                         onClick={() => togglePackage(pkg.title)}
                         className={`w-full py-2 px-3 text-[11px] font-sans uppercase tracking-wider font-semibold flex items-center justify-between border cursor-pointer ${
                           pkg.highlight
-                            ? 'bg-[#032B24] text-[#758361] border-[#758361]'
-                            : 'bg-[#F1ECE0] text-[#032B24] border-[#032B24]/20'
+                            ? 'bg-[#3b4637] text-[#f7f3ea] border-[#a8844a]'
+                            : 'bg-[#fbf9f3] dark:bg-[#232721] text-[#2a2a25] dark:text-[#f7f3ea] border-[#ddd5c3] dark:border-[#3b4237]'
                         }`}
                       >
                         <span>
@@ -240,32 +240,32 @@ export const Benefits: React.FC = () => {
                       </button>
                     </div>
 
-                    {/* Inclusions List: Toggleable on mobile, always visible on desktop */}
-                    <div className={`${isExpanded ? 'block' : 'hidden'} sm:block space-y-2 text-xs font-sans text-[#032B24]/85`}>
-                      <div className="font-bold uppercase tracking-wider text-[10px] text-[#032B24] mb-2">
+                    {/* Inclusions List */}
+                    <div className={`${isExpanded ? 'block' : 'hidden'} sm:block space-y-2 text-xs font-sans text-[#2a2a25]/85 dark:text-[#f7f3ea]/85`}>
+                      <div className="font-bold uppercase tracking-wider text-[10px] text-[#2a2a25] dark:text-[#f7f3ea] mb-2">
                         KEY INCLUSIONS:
                       </div>
                       {pkg.items.map((item) => (
                         <div
                           key={item}
                           className={`flex items-start gap-2 ${
-                            item.startsWith('★') ? 'font-semibold text-[#032B24]' : ''
+                            item.startsWith('★') ? 'font-semibold text-[#2a2a25] dark:text-[#f7f3ea]' : ''
                           }`}
                         >
-                          <span className="text-[#758361] shrink-0">✓</span>
+                          <span className="text-[#a8844a] shrink-0">✓</span>
                           <span>{item}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-[#032B24]/10">
+                  <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-[#ddd5c3] dark:border-[#3b4237]">
                     <a
                       href="#enquiry"
-                      className={`w-full block text-center py-2.5 text-xs font-sans uppercase tracking-wider font-semibold transition-all ${
+                      className={`w-full block text-center py-2.5 text-xs font-sans uppercase tracking-wider font-semibold transition-all cursor-pointer ${
                         pkg.highlight
-                          ? 'bg-[#032B24] text-[#758361] hover:bg-[#758361] hover:text-[#032B24] border border-[#758361]'
-                          : 'bg-transparent text-[#032B24] hover:bg-[#032B24] hover:text-[#758361] border border-[#032B24]/30'
+                          ? 'bg-[#3b4637] text-[#f7f3ea] hover:bg-[#2b3428] border border-[#a8844a] shadow-sm'
+                          : 'bg-transparent text-[#2a2a25] dark:text-[#f7f3ea] hover:bg-[#3b4637] hover:text-[#f7f3ea] border border-[#ddd5c3] dark:border-[#3b4237]'
                       }`}
                     >
                       Choose {pkg.title}

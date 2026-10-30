@@ -1,60 +1,106 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Hanken Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Brand Palette (Light Mode) */
+  --color-ivory: #f7f3ea;
+  --color-paper: #fbf9f3;
+  --color-champagne: #e6d5b0;
+  --color-gold: #a8844a;
+  --color-gold-bright: #c9a96a;
+  --color-sage: #5d6b57;
+  --color-deep-sage: #3b4637;
+  --color-ink: #2a2a25;
+  --color-muted: #6f6c62;
+  --color-line: #ddd5c3;
+
+  /* Dark Mode Palette */
+  --color-dark-bg: #1d201b;
+  --color-dark-paper: #232721;
+  --color-dark-surface: #2b3028;
+  --color-dark-line: #3b4237;
+  --color-dark-muted: #969387;
+}
+
 @layer base {
   :root {
-    --brand-sage: #758361;
-    --brand-sage-dark: #586546;
-    --brand-sage-light: #94A280;
-    --brand-sage-surface: #EEF1EA;
-    --brand-emerald-deep: #032B24;
-    --brand-emerald-dark: #02231D;
-    --brand-emerald-secondary: #073B32;
-    --brand-theme-color: #758361;
-    --brand-champagne-gold: #758361;
-    --brand-champagne-light: #EEF1EA;
-    --brand-champagne-dark: #586546;
-    --brand-warm-ivory: #F8F5EE;
-    --brand-ivory-surface: #F1ECE0;
-    --brand-dark-text: #032B24;
-    --brand-ivory-border: rgba(117, 131, 97, 0.25);
+    --bg-page: #f7f3ea;
+    --bg-paper: #fbf9f3;
+    --color-champagne: #e6d5b0;
+    --color-gold: #a8844a;
+    --color-sage: #5d6b57;
+    --color-deep-sage: #3b4637;
+    --color-ink: #2a2a25;
+    --color-muted: #6f6c62;
+    --color-line: #ddd5c3;
+
+    /* Legacy support mappings */
+    --brand-warm-ivory: #f7f3ea;
+    --brand-dark-text: #2a2a25;
+    --brand-sage: #5d6b57;
+    --brand-emerald-deep: #3b4637;
+  }
+
+  .dark {
+    --bg-page: #1d201b;
+    --bg-paper: #232721;
+    --color-champagne: #e6d5b0;
+    --color-gold: #c9a96a;
+    --color-sage: #75866f;
+    --color-deep-sage: #3b4637;
+    --color-ink: #f7f3ea;
+    --color-muted: #969387;
+    --color-line: #3b4237;
+
+    --brand-warm-ivory: #1d201b;
+    --brand-dark-text: #f7f3ea;
+    --brand-sage: #c9a96a;
+    --brand-emerald-deep: #232721;
   }
 
   body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    color: var(--brand-dark-text);
-    background-color: var(--brand-warm-ivory);
+    font-family: 'Hanken Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--color-ink);
+    background-color: var(--bg-page);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, .font-serif-luxury {
-    font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+  /* Headlines, step numbers, large numerals */
+  h1, h2, h3, .font-serif, .font-numeral, .step-num {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  /* Body text, buttons, form fields */
+  p, span, a, button, input, select, textarea, label, .font-sans {
+    font-family: 'Hanken Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 }
 
-.font-serif {
-  font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
-}
-
-.font-serif-body {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-}
-
-.font-sans {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-/* Custom subtle sage & emerald scrollbar */
+/* Custom Scrollbar styled with Deep Sage and Gold */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #F8F5EE;
+  background: #f7f3ea;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #1d201b;
 }
 ::-webkit-scrollbar-thumb {
-  background: #758361;
-  border-radius: 3px;
+  background: #a8844a;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #032B24;
+  background: #3b4637;
+}
+
+/* Luxury Royal Arch Utility */
+.royal-arch {
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
 }

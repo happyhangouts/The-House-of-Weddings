@@ -96,19 +96,19 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-2 sm:p-4 overflow-y-auto">
-      <div className="relative w-full max-w-4xl bg-[#FAF8F3] border-2 border-[#758361]/60 shadow-[0_25px_70px_rgba(0,0,0,0.8)] flex flex-col max-h-[96vh] overflow-hidden">
+      <div className="relative w-full max-w-4xl bg-[#fbf9f3] dark:bg-[#232721] border-2 border-[#a8844a]/80 shadow-[0_25px_70px_rgba(0,0,0,0.8)] flex flex-col max-h-[96vh] overflow-hidden">
         
         {/* Top Header Bar */}
-        <div className="bg-[#032B24] text-[#F8F5EE] px-3 sm:px-6 py-2.5 sm:py-3 border-b border-[#758361]/40 flex items-center justify-between shrink-0 gap-2">
+        <div className="bg-[#1d201b] text-[#f7f3ea] px-3 sm:px-6 py-2.5 sm:py-3 border-b border-[#a8844a]/40 flex items-center justify-between shrink-0 gap-2">
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-            <span className="w-2 h-2 rounded-full bg-[#758361] animate-pulse shrink-0" />
+            <span className="w-2 h-2 rounded-full bg-[#a8844a] animate-pulse shrink-0" />
             <div className="min-w-0">
-              <span className="text-[10px] sm:text-xs font-sans tracking-[0.16em] sm:tracking-[0.2em] uppercase text-[#758361] font-semibold block truncate">
+              <span className="text-[10px] sm:text-xs font-sans tracking-[0.16em] sm:tracking-[0.2em] uppercase text-[#e6d5b0] font-semibold block truncate">
                 {activeBrochure === 'maison'
                   ? 'Maison Folio · What We Do Differently'
                   : 'Capability Brochure · Event Management'}
               </span>
-              <span className="text-[9px] sm:text-[10px] text-[#F8F5EE]/70 font-sans hidden sm:block truncate">
+              <span className="text-[9px] sm:text-[10px] text-[#ddd5c3]/75 font-sans hidden sm:block truncate">
                 {activeBrochure === 'maison'
                   ? 'Bespoke Planning, Spatial Design & Investment Stewardship (4 Pages)'
                   : 'On-Ground Coordination, Hospitality & Retainer Tiers (6 Pages)'}
@@ -116,15 +116,15 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
             </div>
           </div>
 
-          {/* Quick Actions */}
+          {/* Quick Actions in Deep Sage (#3b4637) with Gold border */}
           <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             <button
               onClick={handleDownloadPdf}
               disabled={isGeneratingPdf}
-              className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-1.5 bg-gradient-to-r from-[#758361] via-[#859470] to-[#758361] hover:brightness-110 text-white text-[10px] sm:text-xs font-sans font-semibold uppercase tracking-wider transition-all disabled:opacity-50 cursor-pointer shadow-sm border border-[#758361]"
+              className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-1.5 bg-[#3b4637] hover:bg-[#2b3428] text-[#f7f3ea] text-[10px] sm:text-xs font-sans font-semibold uppercase tracking-wider transition-all disabled:opacity-50 cursor-pointer shadow-sm border border-[#a8844a]"
               title={`Download ${activeBrochure === 'maison' ? 'Maison Folio' : 'Event Management'} PDF`}
             >
-              <svg className="w-3.5 h-3.5 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2.2">
+              <svg className="w-3.5 h-3.5 fill-none stroke-current text-[#e6d5b0]" viewBox="0 0 24 24" strokeWidth="2.2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
               <span>
@@ -138,10 +138,10 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
 
             <button
               onClick={handleWhatsApp}
-              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#02201A] hover:bg-[#758361] text-[#758361] hover:text-white border border-[#758361]/50 text-[10px] sm:text-xs font-sans uppercase tracking-wider transition-colors cursor-pointer"
+              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#232721] hover:bg-[#3b4637] text-[#e6d5b0] hover:text-white border border-[#a8844a]/50 text-[10px] sm:text-xs font-sans uppercase tracking-wider transition-colors cursor-pointer"
               title="Get Brochure on WhatsApp"
             >
-              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 fill-current text-[#25D366]" viewBox="0 0 24 24">
                 <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.41a8.177 8.177 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.45 0-2.87-.38-4.12-1.11l-.3-.17-3.12.82.83-3.04-.19-.31a8.21 8.21 0 0 1-1.26-4.43c0-4.54 3.69-8.24 8.24-8.24zM8.53 7.33c-.2 0-.44.02-.65.23-.26.26-.98.96-.98 2.34 0 1.38 1.01 2.72 1.15 2.91.14.19 1.95 3.05 4.77 4.24 2.34.99 2.82.79 3.32.75.51-.05 1.65-.67 1.88-1.33.24-.65.24-1.21.17-1.33-.07-.12-.26-.19-.55-.33s-1.69-.83-1.95-.93c-.26-.09-.45-.14-.64.14-.19.28-.74.93-.91 1.12-.17.19-.34.21-.63.07-.29-.14-1.22-.45-2.33-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.56-.47-.48-.65-.49-.17-.01-.36-.01-.56-.01z"/>
               </svg>
               <span>WhatsApp</span>
@@ -151,7 +151,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
             <button
               onClick={onClose}
               aria-label="Close Brochure Modal"
-              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-[#F8F5EE] flex items-center justify-center transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-[#f7f3ea] flex items-center justify-center transition-colors cursor-pointer"
             >
               ✕
             </button>
@@ -159,19 +159,19 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
         </div>
 
         {/* Dual Brochure Switcher Tabs */}
-        <div className="bg-[#02201A] px-3 sm:px-6 py-2 border-b border-[#758361]/30 flex items-center justify-between gap-2 overflow-x-auto">
+        <div className="bg-[#232721] px-3 sm:px-6 py-2 border-b border-[#a8844a]/30 flex items-center justify-between gap-2 overflow-x-auto">
           <div className="flex items-center gap-1.5 sm:gap-2">
             <button
               type="button"
               onClick={() => handleBrochureChange('maison')}
               className={`px-3 py-1.5 text-[10px] sm:text-xs font-sans uppercase tracking-wider font-semibold transition-all cursor-pointer rounded-none border whitespace-nowrap ${
                 activeBrochure === 'maison'
-                  ? 'bg-[#758361] text-white border-[#758361] shadow-xs'
-                  : 'bg-[#032B24] text-[#F8F5EE]/75 border-[#758361]/30 hover:border-[#758361] hover:text-[#758361]'
+                  ? 'bg-[#3b4637] text-[#f7f3ea] border-[#a8844a] shadow-xs'
+                  : 'bg-[#1d201b] text-[#ddd5c3]/75 border-[#ddd5c3]/30 hover:border-[#a8844a] hover:text-[#e6d5b0]'
               }`}
             >
               <span>✦ Maison Folio: What We Do Differently</span>
-              <span className="ml-1.5 px-1 py-0.2 bg-black/25 text-[8.5px]">4 Pgs</span>
+              <span className="ml-1.5 px-1 py-0.2 bg-black/35 text-[8.5px] text-[#e6d5b0]">4 Pgs</span>
             </button>
 
             <button
@@ -179,22 +179,22 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
               onClick={() => handleBrochureChange('management')}
               className={`px-3 py-1.5 text-[10px] sm:text-xs font-sans uppercase tracking-wider font-semibold transition-all cursor-pointer rounded-none border whitespace-nowrap ${
                 activeBrochure === 'management'
-                  ? 'bg-[#758361] text-white border-[#758361] shadow-xs'
-                  : 'bg-[#032B24] text-[#F8F5EE]/75 border-[#758361]/30 hover:border-[#758361] hover:text-[#758361]'
+                  ? 'bg-[#3b4637] text-[#f7f3ea] border-[#a8844a] shadow-xs'
+                  : 'bg-[#1d201b] text-[#ddd5c3]/75 border-[#ddd5c3]/30 hover:border-[#a8844a] hover:text-[#e6d5b0]'
               }`}
             >
               <span>✦ Event Management &amp; Packages</span>
-              <span className="ml-1.5 px-1 py-0.2 bg-black/25 text-[8.5px]">6 Pgs</span>
+              <span className="ml-1.5 px-1 py-0.2 bg-black/35 text-[8.5px] text-[#e6d5b0]">6 Pgs</span>
             </button>
           </div>
 
-          <div className="text-[9px] font-sans text-[#758361] uppercase tracking-widest hidden lg:block shrink-0">
+          <div className="text-[9px] font-sans text-[#e6d5b0] uppercase tracking-widest hidden lg:block shrink-0">
             {activeBrochure === 'maison' ? 'Planning & Design Atelier' : 'On-Ground Coordination'}
           </div>
         </div>
 
         {/* Brochure Page Display Area */}
-        <div className="flex-1 overflow-y-auto p-2 sm:p-6 bg-[#EAE5D9] flex justify-center">
+        <div className="flex-1 overflow-y-auto p-2 sm:p-6 bg-[#f7f3ea] dark:bg-[#1d201b] flex justify-center">
           <div className="w-full flex justify-center py-2">
             {activeBrochure === 'maison' && (
               <>
@@ -233,14 +233,14 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
         </div>
 
         {/* Bottom Modal Navigation & Action Bar */}
-        <div className="bg-[#FAF8F3] px-3 sm:px-6 py-2.5 sm:py-3 border-t border-[#758361]/30 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3 shrink-0">
+        <div className="bg-[#fbf9f3] dark:bg-[#232721] px-3 sm:px-6 py-2.5 sm:py-3 border-t border-[#ddd5c3] dark:border-[#3b4237] flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3 shrink-0">
           
           {/* Page Switcher */}
           <div className="flex items-center gap-1.5 sm:gap-2">
             <button
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
               disabled={currentPage === 1}
-              className="px-2.5 sm:px-3 py-1.5 border border-[#032B24]/20 hover:border-[#758361] text-[11px] sm:text-xs font-sans uppercase tracking-wider text-[#032B24] disabled:opacity-30 cursor-pointer"
+              className="px-2.5 sm:px-3 py-1.5 border border-[#ddd5c3] dark:border-[#3b4237] hover:border-[#a8844a] text-[11px] sm:text-xs font-sans uppercase tracking-wider text-[#2a2a25] dark:text-[#f7f3ea] disabled:opacity-30 cursor-pointer"
             >
               &larr; Prev
             </button>
@@ -250,10 +250,10 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
                 <button
                   key={p}
                   onClick={() => setCurrentPage(p)}
-                  className={`w-7 h-7 text-xs font-sans font-medium transition-all cursor-pointer ${
+                  className={`w-7 h-7 text-xs font-serif font-medium transition-all cursor-pointer ${
                     currentPage === p
-                      ? 'bg-[#032B24] text-[#758361] border border-[#758361]'
-                      : 'bg-[#F1ECE0] text-[#032B24]/70 hover:bg-[#758361]/20'
+                      ? 'bg-[#3b4637] text-[#f7f3ea] border border-[#a8844a]'
+                      : 'bg-[#f7f3ea] dark:bg-[#1d201b] text-[#6f6c62] dark:text-[#ddd5c3] hover:bg-[#a8844a]/20'
                   }`}
                 >
                   0{p}
@@ -264,7 +264,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
             <button
               onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
-              className="px-2.5 sm:px-3 py-1.5 border border-[#032B24]/20 hover:border-[#758361] text-[11px] sm:text-xs font-sans uppercase tracking-wider text-[#032B24] disabled:opacity-30 cursor-pointer"
+              className="px-2.5 sm:px-3 py-1.5 border border-[#ddd5c3] dark:border-[#3b4237] hover:border-[#a8844a] text-[11px] sm:text-xs font-sans uppercase tracking-wider text-[#2a2a25] dark:text-[#f7f3ea] disabled:opacity-30 cursor-pointer"
             >
               Next &rarr;
             </button>
@@ -274,7 +274,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
             <button
               onClick={handleDownloadPdf}
               disabled={isGeneratingPdf}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 bg-[#032B24] text-[#758361] hover:bg-[#758361] hover:text-white border border-[#758361] text-[11px] sm:text-xs font-sans font-semibold uppercase tracking-wider transition-all cursor-pointer disabled:opacity-50"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 bg-[#1d201b] text-[#e6d5b0] hover:bg-[#3b4637] hover:text-[#f7f3ea] border border-[#a8844a] text-[11px] sm:text-xs font-sans font-semibold uppercase tracking-wider transition-all cursor-pointer disabled:opacity-50"
             >
               <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -294,7 +294,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
                   onClose();
                   onPlanClick();
                 }}
-                className="flex-1 sm:flex-initial px-4 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-[#758361] via-[#859470] to-[#758361] hover:brightness-110 text-white text-[11px] sm:text-xs font-sans font-semibold uppercase tracking-wider transition-all cursor-pointer shadow-sm border border-[#758361] whitespace-nowrap"
+                className="flex-1 sm:flex-initial px-4 sm:px-5 py-2 sm:py-2.5 bg-[#3b4637] hover:bg-[#2b3428] text-[#f7f3ea] text-[11px] sm:text-xs font-sans font-semibold uppercase tracking-wider transition-all cursor-pointer shadow-sm border border-[#a8844a] whitespace-nowrap"
               >
                 Reserve Consultation
               </button>

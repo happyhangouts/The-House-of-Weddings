@@ -6,8 +6,9 @@
 </head>
 <body>
   <!-- Static form definition for Netlify Forms build crawler -->
-  <form name="wedding-enquiry" netlify netlify-honeypot="bot-field" hidden>
+  <form name="wedding-enquiry" data-netlify="true" netlify netlify-honeypot="bot-field" data-netlify-honeypot="bot-field" hidden>
     <input type="hidden" name="form-name" value="wedding-enquiry" />
+    <input type="hidden" name="subject" value="New Wedding Enquiry - The House of Weddings" />
     <input type="text" name="bot-field" />
     <input type="text" name="fullName" />
     <input type="tel" name="whatsappNumber" />

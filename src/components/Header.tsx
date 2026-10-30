@@ -5,11 +5,15 @@ import { CONTACT_INFO } from '../config/contact';
 interface HeaderProps {
   onPlanClick: () => void;
   onOpenBrochure?: (type?: 'maison' | 'management') => void;
+  isDarkMode?: boolean;
+  onToggleDarkMode?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   onPlanClick,
   onOpenBrochure,
+  isDarkMode = false,
+  onToggleDarkMode,
 }) => {
   const [scrolled, setScrolled] = useState(false);
 
@@ -25,8 +29,8 @@ export const Header: React.FC<HeaderProps> = ({
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? 'bg-[#032B24]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.35)] py-2.5 sm:py-3 border-b border-[#758361]/35'
-          : 'bg-[#032B24] py-3 sm:py-5 border-b border-[#758361]/25'
+          ? 'bg-[#1d201b]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.4)] py-2.5 sm:py-3 border-b border-[#a8844a]/30'
+          : 'bg-[#1d201b] py-3 sm:py-4 border-b border-[#ddd5c3]/20'
       }`}
     >
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
@@ -41,11 +45,11 @@ export const Header: React.FC<HeaderProps> = ({
           </a>
         </div>
 
-        {/* Center: Simple, Clear Navigation */}
-        <nav className="hidden lg:flex items-center gap-7 text-xs font-sans tracking-wider uppercase text-[#F8F5EE]/80">
+        {/* Center: Simple, Clear Navigation in Hanken Grotesk */}
+        <nav className="hidden lg:flex items-center gap-7 text-xs font-sans tracking-wider uppercase text-[#f7f3ea]/80">
           <a
             href="#what-we-do"
-            className="hover:text-[#758361] transition-colors py-1 relative hover:underline underline-offset-8 decoration-[#758361]"
+            className="hover:text-[#e6d5b0] transition-colors py-1 relative hover:underline underline-offset-8 decoration-[#a8844a]"
           >
             What We Do
           </a>
@@ -57,59 +61,83 @@ export const Header: React.FC<HeaderProps> = ({
                 onOpenBrochure();
               }
             }}
-            className="text-[#758361] hover:text-white transition-colors py-1 relative flex items-center gap-1.5 font-medium cursor-pointer"
+            className="text-[#e6d5b0] hover:text-white transition-colors py-1 relative flex items-center gap-1.5 font-medium cursor-pointer"
           >
             <span>Brochure</span>
-            <span className="px-1.5 py-0.5 text-[8.5px] bg-[#758361] text-white font-bold tracking-widest uppercase">
+            <span className="px-1.5 py-0.5 text-[8.5px] bg-[#3b4637] border border-[#a8844a]/60 text-[#f7f3ea] font-bold tracking-widest uppercase">
               PDF
             </span>
           </a>
           <a
             href="#benefits"
-            className="hover:text-[#758361] transition-colors py-1 relative hover:underline underline-offset-8 decoration-[#758361]"
+            className="hover:text-[#e6d5b0] transition-colors py-1 relative hover:underline underline-offset-8 decoration-[#a8844a]"
           >
             How We Help
           </a>
           <a
             href="#client-stories"
-            className="hover:text-[#758361] transition-colors py-1 relative hover:underline underline-offset-8 decoration-[#758361]"
+            className="hover:text-[#e6d5b0] transition-colors py-1 relative hover:underline underline-offset-8 decoration-[#a8844a]"
           >
             Real Stories
           </a>
           <a
             href="#calculator"
-            className="hover:text-[#758361] transition-colors py-1 relative hover:underline underline-offset-8 decoration-[#758361]"
+            className="hover:text-[#e6d5b0] transition-colors py-1 relative hover:underline underline-offset-8 decoration-[#a8844a]"
           >
             Cost Calculator
           </a>
           <a
             href="#faq"
-            className="hover:text-[#758361] transition-colors py-1 relative hover:underline underline-offset-8 decoration-[#758361]"
+            className="hover:text-[#e6d5b0] transition-colors py-1 relative hover:underline underline-offset-8 decoration-[#a8844a]"
           >
             FAQ
           </a>
         </nav>
 
-        {/* Right: Direct WhatsApp & Call to Action */}
+        {/* Right: Theme Toggle, WhatsApp & CTA */}
         <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+          {/* Theme Toggle (Light / Dark Mode) */}
+          {onToggleDarkMode && (
+            <button
+              onClick={onToggleDarkMode}
+              type="button"
+              className="p-1.5 sm:p-2 text-[#e6d5b0] hover:text-white hover:bg-white/5 border border-[#a8844a]/30 transition-colors text-xs cursor-pointer rounded-xs"
+              title={isDarkMode ? 'Switch to Ivory Light Mode' : 'Switch to Royal Deep Dark Mode'}
+              aria-label="Toggle dark/light theme"
+            >
+              {isDarkMode ? (
+                <span className="flex items-center gap-1 text-[11px] font-sans">
+                  <span>☀️</span>
+                  <span className="hidden md:inline text-[10px] tracking-wider uppercase text-[#e6d5b0]">Light</span>
+                </span>
+              ) : (
+                <span className="flex items-center gap-1 text-[11px] font-sans">
+                  <span>🌙</span>
+                  <span className="hidden md:inline text-[10px] tracking-wider uppercase text-[#e6d5b0]">Dark</span>
+                </span>
+              )}
+            </button>
+          )}
+
           <a
             href={CONTACT_INFO.whatsapp.url}
             target="_blank"
             rel="noopener noreferrer"
             title={`Chat on WhatsApp (${CONTACT_INFO.whatsapp.display})`}
             aria-label="Chat on WhatsApp"
-            className="p-1.5 sm:px-3 sm:py-2 text-[#758361] hover:text-white hover:bg-[#758361] transition-colors border border-[#758361]/40 hover:border-[#758361] flex items-center gap-1.5 text-xs font-sans uppercase tracking-wider shrink-0"
+            className="p-1.5 sm:px-3 sm:py-2 text-[#e6d5b0] hover:text-white hover:bg-[#3b4637] transition-colors border border-[#a8844a]/40 hover:border-[#a8844a] flex items-center gap-1.5 text-xs font-sans uppercase tracking-wider shrink-0"
           >
-            <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+            <svg className="w-3.5 h-3.5 fill-current text-[#25D366]" viewBox="0 0 24 24">
               <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.41a8.177 8.177 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.45 0-2.87-.38-4.12-1.11l-.3-.17-3.12.82.83-3.04-.19-.31a8.21 8.21 0 0 1-1.26-4.43c0-4.54 3.69-8.24 8.24-8.24zM8.53 7.33c-.2 0-.44.02-.65.23-.26.26-.98.96-.98 2.34 0 1.38 1.01 2.72 1.15 2.91.14.19 1.95 3.05 4.77 4.24 2.34.99 2.82.79 3.32.75.51-.05 1.65-.67 1.88-1.33.24-.65.24-1.21.17-1.33-.07-.12-.26-.19-.55-.33s-1.69-.83-1.95-.93c-.26-.09-.45-.14-.64.14-.19.28-.74.93-.91 1.12-.17.19-.34.21-.63.07-.29-.14-1.22-.45-2.33-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.09-.19.05-.36-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.56-.47-.48-.65-.49-.17-.01-.36-.01-.56-.01z"/>
             </svg>
             <span className="hidden sm:inline font-medium">WhatsApp</span>
           </a>
 
+          {/* Primary CTA in Deep Sage (#3b4637) with Gold border */}
           <button
             onClick={onPlanClick}
             type="button"
-            className="px-2.5 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-sans uppercase tracking-[0.12em] sm:tracking-[0.16em] font-semibold text-white bg-gradient-to-r from-[#758361] via-[#859470] to-[#758361] hover:brightness-110 shadow-sm border border-[#758361] transition-all cursor-pointer whitespace-nowrap shrink-0"
+            className="px-2.5 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-sans uppercase tracking-[0.12em] sm:tracking-[0.16em] font-semibold text-[#f7f3ea] bg-[#3b4637] hover:bg-[#2e372b] shadow-sm border border-[#a8844a] transition-all cursor-pointer whitespace-nowrap shrink-0 active:scale-[0.99]"
           >
             <span className="hidden sm:inline">Plan Your Wedding</span>
             <span className="sm:hidden">Plan</span>
