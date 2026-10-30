@@ -13,12 +13,19 @@ import { Footer } from './components/Footer';
 import { MobileStickyBar } from './components/MobileStickyBar';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { BrochureModal, BrochureType } from './components/BrochureModal';
+import { sound } from './utils/soundEngine';
 
 export default function App() {
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
   const [brochureType, setBrochureType] = useState<BrochureType>('maison');
   const [brochurePage, setBrochurePage] = useState(1);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isSoundMuted, setIsSoundMuted] = useState(sound.getMutedState());
+
+  useEffect(() => {
+    // Attach luxury tactile audio listeners for clicks, typing, and toggles
+    sound.attachGlobalListeners();
+  }, []);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -41,6 +48,11 @@ export default function App() {
     }
   };
 
+  const handleToggleSound = () => {
+    const updated = sound.toggleMute();
+    setIsSoundMuted(updated);
+  };
+
   return (
     <LogoProvider>
       <div id="top" className="min-h-screen flex flex-col bg-[#f7f3ea] dark:bg-[#1d201b] text-[#2a2a25] dark:text-[#f7f3ea] transition-colors duration-300">
@@ -50,6 +62,8 @@ export default function App() {
           onOpenBrochure={(type = 'maison') => openBrochure(type, 1)}
           isDarkMode={isDarkMode}
           onToggleDarkMode={() => setIsDarkMode((prev) => !prev)}
+          isSoundMuted={isSoundMuted}
+          onToggleSound={handleToggleSound}
         />
 
         <main className="flex-grow">
@@ -84,7 +98,7 @@ export default function App() {
         {/* Minimal Footer */}
         <Footer />
 
-        {/* Floating Direct WhatsApp & Instagram Widget */}
+        {/* Floating Direct WhatsApp Widget */}
         <FloatingWhatsApp />
 
         {/* Mobile Sticky CTA Bar */}

@@ -7,6 +7,8 @@ interface HeaderProps {
   onOpenBrochure?: (type?: 'maison' | 'management') => void;
   isDarkMode?: boolean;
   onToggleDarkMode?: () => void;
+  isSoundMuted?: boolean;
+  onToggleSound?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -14,6 +16,8 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenBrochure,
   isDarkMode = false,
   onToggleDarkMode,
+  isSoundMuted = false,
+  onToggleSound,
 }) => {
   const [scrolled, setScrolled] = useState(false);
 
@@ -94,8 +98,31 @@ export const Header: React.FC<HeaderProps> = ({
           </a>
         </nav>
 
-        {/* Right: Theme Toggle, WhatsApp & CTA */}
-        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+        {/* Right: Sound Toggle, Theme Toggle, WhatsApp & CTA */}
+        <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+          {/* Premium Acoustic Sound Toggle */}
+          {onToggleSound && (
+            <button
+              onClick={onToggleSound}
+              type="button"
+              className="p-1.5 sm:px-2 sm:py-1.5 text-[#e6d5b0] hover:text-white hover:bg-white/5 border border-[#a8844a]/30 transition-colors text-xs cursor-pointer rounded-xs flex items-center gap-1"
+              title={isSoundMuted ? 'Turn on tactile interaction sound' : 'Mute interaction sound'}
+              aria-label="Toggle interaction sounds"
+            >
+              {isSoundMuted ? (
+                <span className="flex items-center gap-1 text-[11px] font-sans opacity-70">
+                  <span className="text-[12px]">🔇</span>
+                  <span className="hidden xl:inline text-[9.5px] tracking-wider uppercase text-[#ddd5c3]">Muted</span>
+                </span>
+              ) : (
+                <span className="flex items-center gap-1 text-[11px] font-sans">
+                  <span className="text-[12px]">🔊</span>
+                  <span className="hidden xl:inline text-[9.5px] tracking-wider uppercase text-[#e6d5b0]">Sound</span>
+                </span>
+              )}
+            </button>
+          )}
+
           {/* Theme Toggle (Light / Dark Mode) */}
           {onToggleDarkMode && (
             <button

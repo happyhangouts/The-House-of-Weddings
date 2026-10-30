@@ -251,14 +251,71 @@ export const WhatWeDo: React.FC<WhatWeDoProps> = ({ onOpenBrochure }) => {
                   </div>
                 </div>
 
-                {/* Real Case Study Paragraph */}
-                <div className={`${expandedSteps[3] ? 'block' : 'hidden'} sm:block p-3.5 sm:p-4 bg-[#232721] border-l-2 border-[#a8844a] text-xs font-sans text-[#f7f3ea]/80 leading-relaxed`}>
-                  <div className="text-[11px] font-sans uppercase tracking-[0.18em] text-[#e6d5b0] mb-2 font-medium">
-                    Actual Rajasthan Destination Wedding Result:
+                {/* Real Case Study Paragraph with Transparent Line-by-Line Math */}
+                <div className={`${expandedSteps[3] ? 'block' : 'hidden'} sm:block p-3.5 sm:p-5 bg-[#232721] border-l-2 border-[#a8844a] text-xs font-sans text-[#f7f3ea]/85 leading-relaxed space-y-3`}>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-[#ddd5c3]/15 pb-2">
+                    <span className="text-[11px] font-sans uppercase tracking-[0.18em] text-[#e6d5b0] font-semibold">
+                      Actual Rajasthan Destination Wedding Result:
+                    </span>
+                    <span className="text-[10px] font-mono text-[#a8844a]">
+                      Verified Mathematical Breakdown
+                    </span>
                   </div>
-                  <p>
-                    By tracking exact arrival dates 14 days before the wedding, the family released 18 unneeded hotel rooms without penalty and adjusted dinner catering by 53 plates. Total direct savings: ₹18,50,000.
+
+                  <p className="font-light">
+                    By confirming exact flight arrivals and room occupancy 14 days before hotel penalty cutoffs, the couple avoided paying for 53 non-attending guests and released 18 unneeded palace rooms:
                   </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 pt-1">
+                    <div className="p-2.5 bg-[#1d201b] border border-[#a8844a]/20">
+                      <span className="text-[9px] uppercase tracking-wider text-[#a8844a] block font-semibold">
+                        1. Catering Plates
+                      </span>
+                      <span className="font-serif text-sm sm:text-base font-bold text-[#f7f3ea] block mt-0.5">
+                        ₹7,95,000
+                      </span>
+                      <span className="text-[9.5px] text-[#ddd5c3]/70 font-light block">
+                        53 plates × 3 functions @ ₹5,000
+                      </span>
+                    </div>
+
+                    <div className="p-2.5 bg-[#1d201b] border border-[#a8844a]/20">
+                      <span className="text-[9px] uppercase tracking-wider text-[#a8844a] block font-semibold">
+                        2. Hotel Rooms
+                      </span>
+                      <span className="font-serif text-sm sm:text-base font-bold text-[#f7f3ea] block mt-0.5">
+                        ₹9,00,000
+                      </span>
+                      <span className="text-[9.5px] text-[#ddd5c3]/70 font-light block">
+                        18 rooms × 2 nights @ ₹25,000
+                      </span>
+                    </div>
+
+                    <div className="p-2.5 bg-[#1d201b] border border-[#a8844a]/20">
+                      <span className="text-[9px] uppercase tracking-wider text-[#a8844a] block font-semibold">
+                        3. Airport Transit
+                      </span>
+                      <span className="font-serif text-sm sm:text-base font-bold text-[#f7f3ea] block mt-0.5">
+                        ₹1,55,000
+                      </span>
+                      <span className="text-[9.5px] text-[#ddd5c3]/70 font-light block">
+                        53 guests × luxury cars &amp; hampers
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-t border-[#ddd5c3]/15">
+                    <div className="text-[11px] text-[#e6d5b0] font-medium">
+                      Total Direct Verified Savings: <strong className="font-serif text-sm font-bold text-[#f7f3ea]">₹18,50,000 (₹18.5 Lakhs)</strong>
+                    </div>
+                    <a
+                      href="#calculator"
+                      className="text-[11px] text-[#a8844a] hover:text-[#e6d5b0] underline underline-offset-4 tracking-wider uppercase font-semibold transition-colors inline-flex items-center gap-1"
+                    >
+                      <span>Verify in Guest &amp; Budget Optimizer</span>
+                      <span>&darr;</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

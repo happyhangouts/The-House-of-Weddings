@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { WeddingEnquiryData } from '../types';
+import { sound } from '../utils/soundEngine';
 
 const SERVICE_OPTIONS = [
   { id: 'venue', label: 'Venue Finding' },
@@ -255,6 +256,9 @@ export const EnquiryForm: React.FC = () => {
       });
 
       if (response.ok) {
+        // Trigger royal celebratory chime on successful submission
+        sound.playSuccessSound();
+
         setSubmittedSummary({ ...formData });
         setIsSubmitted(true);
         setSubmitError(null);
