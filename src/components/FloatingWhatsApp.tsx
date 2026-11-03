@@ -1,5 +1,6 @@
 import React from 'react';
 import { CONTACT_INFO } from '../config/contact';
+import { trackWhatsAppClick } from '../utils/analytics';
 
 export const FloatingWhatsApp: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ export const FloatingWhatsApp: React.FC = () => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Direct WhatsApp Chat"
+        onClick={() => trackWhatsAppClick('floating_button')}
         className="group relative flex items-center justify-center w-13 h-13 rounded-full bg-[#1d201b] text-[#25D366] hover:text-white hover:bg-[#25D366] border-2 border-[#a8844a] shadow-[0_8px_25px_rgba(0,0,0,0.5)] transition-all duration-300 hover:scale-105 active:scale-95"
         title={`Chat on WhatsApp (${CONTACT_INFO.whatsapp.display})`}
       >

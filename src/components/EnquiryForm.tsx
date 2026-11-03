@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { WeddingEnquiryData } from '../types';
 import { sound } from '../utils/soundEngine';
+import { trackEnquirySubmission, trackWhatsAppClick, trackEvent } from '../utils/analytics';
 
 const SERVICE_OPTIONS = [
   { id: 'venue', label: 'Venue Finding' },
@@ -259,17 +260,12 @@ export const EnquiryForm: React.FC = () => {
         // Trigger royal celebratory chime on successful submission
         sound.playSuccessSound();
 
+        // Track GA4 lead conversion event
+        trackEnquirySubmission(formData);
+
         setSubmittedSummary({ ...formData });
         setIsSubmitted(true);
         setSubmitError(null);
-
-        // Instantly prepare and trigger WhatsApp with all 15 enquiry details to +91 88008 43189
-        const waUrl = getWhatsAppUrl(formData);
-        try {
-          window.open(waUrl, '_blank');
-        } catch (popupErr) {
-          console.warn('Browser popup blocked auto-open WhatsApp:', popupErr);
-        }
       } else {
         throw new Error(`Netlify form returned status ${response.status}`);
       }

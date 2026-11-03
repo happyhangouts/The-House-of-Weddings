@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLogo } from './LogoContext';
 import { generateBrochurePdf } from '../utils/brochurePdfGenerator';
 import { generateMaisonPdf } from '../utils/maisonPdfGenerator';
+import { trackBrochureAction, trackWhatsAppClick } from '../utils/analytics';
 import {
   BrochurePage1,
   BrochurePage2,
@@ -45,6 +46,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
       setActiveBrochure(initialBrochure);
       setCurrentPage(initialPage);
       document.body.style.overflow = 'hidden';
+      trackBrochureAction('opened', initialBrochure);
     } else {
       document.body.style.overflow = 'unset';
     }
@@ -60,6 +62,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
   const handleBrochureChange = (type: BrochureType) => {
     setActiveBrochure(type);
     setCurrentPage(1);
+    trackBrochureAction('opened', type);
   };
 
   const handleDownloadPdf = async () => {
@@ -74,6 +77,7 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
           setDownloadProgress({ current, total });
         }, logoSrc);
       }
+      trackBrochureAction('downloaded', activeBrochure);
     } catch (err) {
       console.error('Failed to generate PDF:', err);
     } finally {
@@ -88,10 +92,14 @@ export const BrochureModal: React.FC<BrochureModalProps> = ({
         ? 'Maison Folio (Bespoke Planning & Atelier Standards)'
         : 'Event Management & Hospitality Capability Brochure';
 
+    trackWhatsAppClick('brochure_modal');
+
     const text = encodeURIComponent(
       `Hello The House of Weddings, please share the official ${brochureName} (Edition 2026) for our upcoming wedding.`
     );
-    window.open(`https://wa.me/918800843189?text=${text}`, '_blank');
+    try {
+      window.open(`https://wa.me/918800843189?text=${text}`, '_blank');
+    } catch {}
   };
 
   return (

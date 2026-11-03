@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Primary Homepage & Luxury Wedding Planning Services -->
+  <url>
+    <loc>https://www.mubaarqaan.com/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.mubaarqaan.com/og-cover.jpg</image:loc>
+      <image:title>The House of Weddings - Luxury Destination Wedding Planners</image:title>
+      <image:caption>Be a guest at your own wedding with bespoke venue curation, 3D spatial planning, and RSVP guest logistics in Rajasthan.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Curated Wedding Venues & Recce -->
+  <url>
+    <loc>https://www.mubaarqaan.com/#what-we-do</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Guest & Budget Optimizer (Destination Wedding Savings Calculator) -->
+  <url>
+    <loc>https://www.mubaarqaan.com/#calculator</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Delegation & Wedding Management Packages (Bronze, Gold, Platinum) -->
+  <url>
+    <loc>https://www.mubaarqaan.com/#packages</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Plan Your Wedding Enquiry & Private Consultation Booking -->
+  <url>
+    <loc>https://www.mubaarqaan.com/#enquiry</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Wedding Planning FAQ & Direct Transparency -->
+  <url>
+    <loc>https://www.mubaarqaan.com/#faq</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

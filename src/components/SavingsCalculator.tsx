@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { soundEngine } from '../utils/soundEngine';
+import { trackCalculatorUsage } from '../utils/analytics';
 
 export const formatINR = (val: number): string => {
   return new Intl.NumberFormat('en-IN', {
@@ -143,12 +144,14 @@ export const SavingsCalculator: React.FC = () => {
   const applyPreset = (preset: Preset) => {
     soundEngine.playClick();
     setInvitedGuests(preset.invited);
-    setAttendanceRate(Math.round((preset.expected / preset.invited) * 100));
+    const rate = Math.round((preset.expected / preset.invited) * 100);
+    setAttendanceRate(rate);
     setVenueTier(preset.venueType);
     setStayNights(2);
     setFunctionsCount(3);
     setCustomMeal(null);
     setCustomRoom(null);
+    trackCalculatorUsage(preset.invited, rate, totalSavings, preset.venueType);
   };
 
   return (

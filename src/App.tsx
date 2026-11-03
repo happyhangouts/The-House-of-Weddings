@@ -14,6 +14,7 @@ import { MobileStickyBar } from './components/MobileStickyBar';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { BrochureModal, BrochureType } from './components/BrochureModal';
 import { sound } from './utils/soundEngine';
+import { initGA, trackPageView } from './utils/analytics';
 
 export default function App() {
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
@@ -25,6 +26,20 @@ export default function App() {
   useEffect(() => {
     // Attach luxury tactile audio listeners for clicks, typing, and toggles
     sound.attachGlobalListeners();
+
+    // Initialize Google Analytics 4 (GA4) telemetry
+    initGA();
+    trackPageView(document.title, window.location.pathname || '/');
+
+    // Track virtual pageviews on section navigation / hash changes
+    const handleHashChange = () => {
+      const section = window.location.hash.replace('#', '') || 'home';
+      const pageTitle = `The House of Weddings | ${section.toUpperCase().replace('-', ' ')}`;
+      trackPageView(pageTitle, window.location.pathname + window.location.hash);
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   useEffect(() => {
